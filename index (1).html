@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>레이첼영어전문 — 내신·수능 영어</title>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700&family=Pretendard:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f8f6f1;
+  --surface: #ffffff;
+  --surface2: #f2efe8;
+  --border: #e4dfd5;
+  --ink: #1a1816;
+  --ink2: #5a5550;
+  --ink3: #9a9590;
+  --gold: #b8924a;
+  --gold2: #d4aa66;
+  --r: 10px;
+  --ease: cubic-bezier(.4, 0, .2, 1);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Pretendard', sans-serif; background: var(--bg); color: var(--ink); line-height: 1.75; }
+
+/* NAV */
+.nav {
+  position: sticky; top: 0; z-index: 200;
+  background: rgba(248,246,241,0.95); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 28px; height: 60px;
+}
+.nav-logo { font-family: 'Nanum Myeongjo', serif; font-size: 17px; font-weight: 700; color: var(--ink); text-decoration: none; }
+.nav-logo span { color: var(--gold); }
+.nav-links { display: flex; align-items: center; gap: 24px; }
+.nav-links a { font-size: 13px; color: var(--ink2); text-decoration: none; transition: color .2s; }
+.nav-links a:hover { color: var(--gold); }
+.nav-btn {
+  font-size: 13px; font-weight: 600; color: var(--gold);
+  border: 1.5px solid var(--gold); border-radius: 999px;
+  padding: 6px 18px; text-decoration: none; transition: all .2s;
+}
+.nav-btn:hover { background: var(--gold); color: #fff; }
+
+/* HERO */
+.hero {
+  background: var(--ink); color: #fff;
+  padding: 72px 24px 60px; text-align: center;
+}
+.hero-badge {
+  display: inline-block; font-size: 11px; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--gold2);
+  border: 1px solid rgba(184,146,74,.35); border-radius: 999px;
+  padding: 4px 14px; margin-bottom: 20px;
+}
+.hero h1 {
+  font-family: 'Nanum Myeongjo', serif;
+  font-size: clamp(28px, 5vw, 48px); font-weight: 700;
+  line-height: 1.2; margin-bottom: 16px;
+}
+.hero p { font-size: 15px; color: rgba(255,255,255,.6); max-width: 520px; margin: 0 auto 28px; }
+.hero-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.btn-hero-primary {
+  background: var(--gold); color: #fff; font-weight: 600;
+  border: none; border-radius: 999px; padding: 12px 28px;
+  font-size: 14px; cursor: pointer; text-decoration: none;
+  transition: opacity .2s;
+}
+.btn-hero-primary:hover { opacity: .85; }
+.btn-hero-outline {
+  background: transparent; color: rgba(255,255,255,.85);
+  border: 1.5px solid rgba(255,255,255,.3); border-radius: 999px;
+  padding: 12px 28px; font-size: 14px; cursor: pointer;
+  text-decoration: none; transition: all .2s;
+}
+.btn-hero-outline:hover { border-color: rgba(255,255,255,.7); color: #fff; }
+.hero-stats {
+  display: flex; gap: 32px; justify-content: center;
+  margin-top: 40px; flex-wrap: wrap;
+}
+.hstat { text-align: center; }
+.hstat-num { font-family: 'Nanum Myeongjo', serif; font-size: 32px; font-weight: 700; color: var(--gold2); }
+.hstat-label { font-size: 12px; color: rgba(255,255,255,.5); margin-top: 2px; }
+
+/* SECTION WRAPPER */
+.wrap { max-width: 900px; margin: 0 auto; padding: 0 20px; }
+.section-title {
+  font-family: 'Nanum Myeongjo', serif;
+  font-size: 22px; font-weight: 700; color: var(--ink);
+  margin-bottom: 6px;
+}
+.section-sub { font-size: 14px; color: var(--ink3); margin-bottom: 28px; }
+
+/* SUBJECTS */
+#subjects { padding: 64px 0; }
+.subjects-group { margin-bottom: 48px; }
+.group-label {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 12px; font-weight: 700; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--ink3);
+  margin-bottom: 16px;
+}
+.group-label::before {
+  content: ''; flex: 1; height: 1px; background: var(--border);
+}
+.group-label::after {
+  content: ''; flex: 1; height: 1px; background: var(--border);
+}
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 14px;
+}
+.card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--r); padding: 20px;
+  text-decoration: none; color: inherit;
+  transition: all .22s var(--ease);
+  display: flex; flex-direction: column; gap: 8px;
+}
+.card:hover {
+  border-color: var(--gold); box-shadow: 0 4px 20px rgba(184,146,74,.12);
+  transform: translateY(-2px);
+}
+.card-num {
+  font-size: 11px; font-weight: 700; color: var(--gold);
+  letter-spacing: .08em;
+}
+.card-title { font-size: 14px; font-weight: 600; color: var(--ink); line-height: 1.4; }
+.card-desc { font-size: 12px; color: var(--ink3); line-height: 1.5; }
+.card-tags { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 4px; }
+.ctag {
+  font-size: 10px; padding: 2px 8px; border-radius: 999px;
+  background: var(--surface2); color: var(--ink2); border: 1px solid var(--border);
+}
+.ctag.new { background: #fff7e6; color: var(--gold); border-color: rgba(184,146,74,.3); }
+.card-arrow {
+  font-size: 18px; color: var(--gold2);
+  margin-top: auto; text-align: right;
+  transition: transform .2s;
+}
+.card:hover .card-arrow { transform: translateX(4px); }
+
+/* HOW TO */
+#how { background: var(--surface2); padding: 64px 0; }
+.steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px; }
+.step { display: flex; flex-direction: column; gap: 8px; }
+.step-num {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: var(--gold); color: #fff;
+  font-weight: 700; font-size: 14px;
+  display: flex; align-items: center; justify-content: center;
+}
+.step-title { font-size: 15px; font-weight: 600; }
+.step-desc { font-size: 13px; color: var(--ink2); line-height: 1.6; }
+
+/* NOTICE */
+#notice { padding: 64px 0; }
+.notice-list { display: flex; flex-direction: column; gap: 0; }
+.notice-item {
+  display: flex; align-items: flex-start; gap: 16px;
+  padding: 16px 0; border-bottom: 1px solid var(--border);
+}
+.notice-date { font-size: 12px; color: var(--ink3); min-width: 90px; padding-top: 2px; }
+.notice-badge {
+  font-size: 10px; font-weight: 700; padding: 2px 8px;
+  border-radius: 999px; min-width: 44px; text-align: center;
+}
+.badge-new { background: #fff7e6; color: var(--gold); border: 1px solid rgba(184,146,74,.3); }
+.badge-hot { background: #fff1f0; color: #c0392b; border: 1px solid rgba(192,57,43,.2); }
+.badge-plan { background: var(--surface2); color: var(--ink3); border: 1px solid var(--border); }
+.notice-text { font-size: 14px; color: var(--ink); }
+
+/* SCHEDULE */
+#schedule { background: var(--surface2); padding: 64px 0; }
+.schedule-list { display: flex; flex-direction: column; gap: 12px; }
+.schedule-item {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--r); padding: 18px 20px;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+}
+.sch-title { font-size: 15px; font-weight: 600; }
+.sch-sub { font-size: 12px; color: var(--ink3); margin-top: 2px; }
+.sch-badge {
+  font-size: 11px; font-weight: 700; padding: 4px 14px;
+  border-radius: 999px; white-space: nowrap;
+}
+.sch-active { background: #e8f5ee; color: #2e7d52; border: 1px solid rgba(46,125,82,.2); }
+.sch-ready { background: var(--surface2); color: var(--ink3); border: 1px solid var(--border); }
+
+/* FOOTER */
+footer {
+  background: var(--ink); color: rgba(255,255,255,.5);
+  padding: 40px 24px; text-align: center;
+}
+footer .footer-logo {
+  font-family: 'Nanum Myeongjo', serif; font-size: 18px;
+  font-weight: 700; color: #fff; margin-bottom: 8px;
+}
+footer .footer-logo span { color: var(--gold2); }
+.footer-links { display: flex; justify-content: center; gap: 20px; margin: 16px 0; flex-wrap: wrap; }
+.footer-links a { font-size: 13px; color: rgba(255,255,255,.5); text-decoration: none; transition: color .2s; }
+.footer-links a:hover { color: var(--gold2); }
+.footer-copy { font-size: 12px; color: rgba(255,255,255,.3); }
+
+@media (max-width: 600px) {
+  .nav-links { display: none; }
+  .hero { padding: 52px 16px 44px; }
+  .wrap { padding: 0 16px; }
+  .cards-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-logo" href="index.html">레이첼<span>영어전문</span></a>
+  <div class="nav-links">
+    <a href="#subjects">학습 자료</a>
+    <a href="#schedule">시험 일정</a>
+    <a href="#notice">공지사항</a>
+    <a class="nav-btn" href="quiz.html">퀴즈 풀기 →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">Rachel English Academy</div>
+  <h1>내신·수능 영어,<br>레이첼과 함께</h1>
+  <p>고등학교 영어 내신 및 수능을 위한 체계적인 어휘·어법·독해 학습 자료를 제공합니다. 지금 바로 문제를 풀어보세요.</p>
+  <div class="hero-btns">
+    <a class="btn-hero-primary" href="quiz.html">📝 퀴즈 바로 풀기</a>
+    <a class="btn-hero-outline" href="#subjects">학습 자료 보기</a>
+  </div>
+  <div class="hero-stats">
+    <div class="hstat">
+      <div class="hstat-num">2026</div>
+      <div class="hstat-label">03월 고1 모의고사</div>
+    </div>
+    <div class="hstat">
+      <div class="hstat-num">100+</div>
+      <div class="hstat-label">어휘·어법·독해 문항</div>
+    </div>
+    <div class="hstat">
+      <div class="hstat-num">21~42번</div>
+      <div class="hstat-label">지문 수록</div>
+    </div>
+  </div>
+</section>
+
+<!-- SUBJECTS -->
+<section id="subjects">
+  <div class="wrap">
+    <p class="section-title">학습 자료</p>
+    <p class="section-sub">지금 학습할 수 있는 문제 모음 — 2026년 3월 고1 모의고사를 기반으로 제작된 어휘·어법·독해 문제입니다.</p>
+
+    <!-- 21~24번 그룹 -->
+    <div class="subjects-group">
+      <div class="group-label">21 — 24번 · 어휘·어법</div>
+      <div class="cards-grid">
+        <a class="card" href="quiz.html#s21">
+          <div class="card-num">21번 · 어휘 선택</div>
+          <div class="card-title">미래 세대에 대한 책임</div>
+          <div class="card-desc">좋은 조상이 될 책임과 우리의 결정이 미치는 광범위한 영향</div>
+          <div class="card-tags"><span class="ctag">11문항</span><span class="ctag">동반의어</span></div>
+          <div class="card-arrow">→</div>
+        </a>
+        <a class="card" href="quiz.html#s22">
+          <div class="card-num">22번 · 어휘 선택</div>
+          <div class="card-title">식성 변화의 유연성</div>
+          <div class="card-desc">신경 가소성 덕분에 반복된 경험으로 식습관을 바꿀 수 있다</div>
+          <div class="card-tags"><span class="ctag">12문항</span><span class="ctag">동반의어</span></div>
+          <div class="card-arrow">→</div>
+        </a>
+        <a class="card" href="quiz.html#s23">
+          <div class="card-num">23번 · 어휘 선택</div>
+          <div class="card-title">연령별 또래 순응의 변화</div>
+          <div class="card-desc">순응 경향은 14세 정점 이후 감소하고 자기 의견 방어 능력은 증가</div>
+          <div class="card-tags"><span class="ctag">10문항</span><span class="ctag">동반의어</span></div>
+          <div class="card-arrow">→</div>
+        </a>
+        <a class="card" href="quiz.html#s24">
+          <div class="card-num">24번 · 어휘 선택</div>
+          <div class="card-title">유혹 묶기 전략</div>
+          <div class="card-desc">즐거운 습관에 새 습관을 결합하는 유혹 묶기로 효과적인 습관 형성</div>
+          <div class="card-tags"><span class="ctag">6문항</span><span class="ctag">동반의어</span></div>
+          <div class="card-arrow">→</div>
+        </a>
+        <a class="card" href="quiz.html#grammar">
+          <div class="card-num">21~24번 · 어법</div>
+          <div class="card-title">어법 정확성 판단</div>
+          <div class="card-desc">밑줄 친 표현이 문법적으로 올바른지 O/X로 판단</div>
+          <div class="card-tags"><span class="ctag">14문항</span><span class="ctag">O/X 선택</span><span class="ctag">해설 제공</span></div>
+          <div class="card-arrow">→</div>
+        </a>
+        <a class="card" href="quiz.html">
+          <div class="card-num">전체 통합</div>
+          <div class="card-title">어휘 + 어법 종합 퀴즈</div>
+          <div class="card-desc">어휘 39문항 + 어법 14문항, 총 53문항을 한 번에 풀고 자동 채점</div>
+          <div class="card-tags"><span class="ctag">53문항</span><span class="ctag">자동채점</span><span class="ctag">S~D 등급</span></div>
+          <div class="card-arrow">→</div>
+        </a>
+      </div>
+    </div>
+
+    <!-- 29~42번 그룹 -->
+    <div class="subjects-group">
+      <div class="group-label">29 — 42번 · 어휘·어법·독해 <span style="font-size:10px;background:#fff7e6;color:var(--gold);border:1px solid rgba(184,146,74,.3);border-radius:999px;padding:1px 8px;margin-left:6px;font-weight:700;">NEW</span></div>
+      <div class="cards-grid">
+        <a class="card" href="quiz_29_42.html#tab-s29">
+          <div class="card-num">29번 · 어휘·어법·빈칸</div>
+          <div class="card-title">개념 모형의 유용성과 한계</div>
+          <div class="card-desc">단순화된 개념 모형은 유용하기만 하면 정확하지 않아도 된다</div>
+          <div class="card-tags"><span class="ctag new">NEW</span><span class="ctag">어휘</span><span class="ctag">어법</span><span class="ctag">빈칸</span></div>
+          <div class="card-arrow">→</div>
+        </a>
+        <a class="card" href="quiz_29_42.html#tab-s30">
+          <div class="card-num">30번 · 어휘·어법·빈칸</div>
+          <div class="card-title">걷기의 문화적 의미 차이</div>
+          <div class="card-desc">개발도상국과 선진국에서 걷기가 갖는 상반된 의미와 가치</div>
+          <div class="card-tags"><span class="ctag new">NEW</span><span class="ctag">어휘</span><span class="ctag">어법</span><span class="ctag">순서·빈칸</span></div>
+          <div class="card-arrow">→</div>
+        </a>
+        <a class="card" href="quiz_29_42.html#tab-s31">
+          <div class="card-num">31번 · 어휘·어법·빈칸</div>
+          <div class="card-title">아이 놀이 공간 단순화</div>
+          <div class="card-desc">너무 많은 장난감은 아이의 창의성을 방해하므로 공간을 단순화해야 한다</div>
+          <div class="card-tags"><span class="ctag new">NEW</span><span class="ctag">어휘</span><span class="ctag">어법</span><span class="ctag">빈칸·요약</span></div>
+          <div class="card-arrow">→</div>
+        </a>
+        <a class="card" href="quiz_29_42.html#tab-s32">
+          <div class="card-num">32번 · 어휘·어법·빈칸</div>
+          <div class="card-title">친숙함과 진정한 숙달의 차이</div>
+          <div class="card-desc">학생들은 인식을 지식으로 착각하는 인지적 편향을 가지고 있다</div>
+          <div class="card-tags"><span class="ctag new">NEW</span><span class="ctag">어휘</span><span class="ctag">어법</span><span class="ctag">빈칸·삽입</span></div>
+          <div class="card-arrow">→</div>
+        </a>
+        <a class="card" href="quiz_29_42.html#tab-s33">
+          <div class="card-num">33번 · 어휘·어법·빈칸</div>
+          <div class="card-title">체중 조절의 설정점 이론</div>
+          <div class="card-desc">체내 지방 세포 수는 어린 시절에 결정되며 다이어트의 한계를 설명</div>
+          <div class="card-tags"><span class="ctag new">NEW</span><span class="ctag">어휘</span><span class="ctag">어법</span><span class="ctag">요약</span></div>
+          <div class="card-arrow">→</div>
+        </a>
+        <a class="card" href="quiz_29_42.html#tab-s34">
+          <div class="card-num">34번 · 어휘·어법·빈칸</div>
+          <div class="card-title">자연 속에서의 치유와 회복</div>
+          <div class="card-desc">자연환경 노출이 스트레스 감소와 정신 건강에 미치는 긍정적 효과</div>
+          <div class="card-tags"><span class="ctag new">NEW</span><span class="ctag">어휘</span><span class="ctag">어법</span><span class="ctag">빈칸</span></div>
+          <div class="card-arrow">→</div>
+        </a>
+        <a class="card" href="quiz_29_42.html#tab-s36">
+          <div class="card-num">36번 · 어휘·어법·순서·빈칸</div>
+          <div class="card-title">"less is more"의 일상 습관</div>
+          <div class="card-desc">단순함을 강조하는 사고방식이 라디오에서 스마트폰까지 변화를 이끌었다</div>
+          <div class="card-tags"><span class="ctag new">NEW</span><span class="ctag">어휘</span><span class="ctag">어법</span><span class="ctag">순서·빈칸</span></div>
+          <div class="card-arrow">→</div>
+        </a>
+        <a class="card" href="quiz_29_42.html#tab-s37">
+          <div class="card-num">37번 · 어휘·어법·순서·빈칸</div>
+          <div class="card-title">플라스틱 산업의 역사</div>
+          <div class="card-desc">플라스틱 기업들이 환경 책임을 소비자에게 전가한 과정</div>
+          <div class="card-tags"><span class="ctag new">NEW</span><span class="ctag">어휘</span><span class="ctag">어법</span><span class="ctag">순서·빈칸</span></div>
+          <div class="card-arrow">→</div>
+        </a>
+        <a class="card" href="quiz_29_42.html#tab-s38">
+          <div class="card-num">38번 · 어휘·어법·빈칸·삽입</div>
+          <div class="card-title">쿤의 패러다임 이론</div>
+          <div class="card-desc">과학적 진보는 수직이 아닌 수평적 관점 이동이다</div>
+          <div class="card-tags"><span class="ctag new">NEW</span><span class="ctag">어휘</span><span class="ctag">어법</span><span class="ctag">빈칸·삽입</span></div>
+          <div class="card-arrow">→</div>
+        </a>
+        <a class="card" href="quiz_29_42.html#tab-s39">
+          <div class="card-num">39번 · 어휘·어법·순서·빈칸</div>
+          <div class="card-title">온실 겨울 수확</div>
+          <div class="card-desc">온실 기술이 겨울철 식물 재배 방식을 어떻게 변화시켰는가</div>
+          <div class="card-tags"><span class="ctag new">NEW</span><span class="ctag">어휘</span><span class="ctag">어법</span><span class="ctag">순서·빈칸</span></div>
+          <div class="card-arrow">→</div>
+        </a>
+        <a class="card" href="quiz_29_42.html#tab-s40">
+          <div class="card-num">40번 · 어휘·어법·빈칸·요약</div>
+          <div class="card-title">육아와 독립심</div>
+          <div class="card-desc">아이의 독립심을 키우는 양육 방식과 과보호의 부작용</div>
+          <div class="card-tags"><span class="ctag new">NEW</span><span class="ctag">어휘</span><span class="ctag">어법</span><span class="ctag">빈칸·요약</span></div>
+          <div class="card-arrow">→</div>
+        </a>
+        <a class="card" href="quiz_29_42.html#tab-s4142">
+          <div class="card-num">41~42번 · 어휘·어법·빈칸·삽입</div>
+          <div class="card-title">인내의 역설적 힘</div>
+          <div class="card-desc">포기하지 않는 인내가 어떻게 역설적으로 더 큰 성과를 만들어내는가</div>
+          <div class="card-tags"><span class="ctag new">NEW</span><span class="ctag">어휘</span><span class="ctag">어법</span><span class="ctag">빈칸·삽입</span></div>
+          <div class="card-arrow">→</div>
+        </a>
+        <a class="card" href="quiz_29_42.html" style="border-color: var(--gold); background: #fffbf4;">
+          <div class="card-num">29~42번 전체 통합</div>
+          <div class="card-title">종합 퀴즈 — 한 번에 풀기</div>
+          <div class="card-desc">어휘·어법·순서·빈칸·삽입 전 문항을 통합 채점</div>
+          <div class="card-tags"><span class="ctag new">NEW</span><span class="ctag">자동채점</span><span class="ctag">등급 확인</span></div>
+          <div class="card-arrow">→</div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW TO -->
+<section id="how">
+  <div class="wrap">
+    <p class="section-title">이용 방법</p>
+    <p class="section-sub">어떻게 공부할까요?</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-title">지문 선택</div>
+        <div class="step-desc">학습할 지문 번호를 선택하거나 전체 통합 퀴즈를 시작합니다.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-title">어휘·어법 선택</div>
+        <div class="step-desc">지문을 읽으며 문맥에 맞는 어휘를 고르고, 어법이 맞는지 O/X로 답합니다.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-title">자동 채점</div>
+        <div class="step-desc">채점 버튼을 누르면 즉시 정오 표시와 함께 어법 해설이 제공됩니다.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <div class="step-title">등급 확인</div>
+        <div class="step-desc">S/A/B/C/D 등급과 지문별 점수로 취약 부분을 파악하고 반복 학습합니다.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NOTICE -->
+<section id="notice">
+  <div class="wrap">
+    <p class="section-title">공지사항</p>
+    <p class="section-sub">최근 업데이트</p>
+    <div class="notice-list">
+      <div class="notice-item">
+        <span class="notice-date">2026.04.13</span>
+        <span class="notice-badge badge-new">NEW</span>
+        <span class="notice-text">2026년 03월 고1 모의고사 29~42번 어휘·어법·독해 퀴즈 오픈</span>
+      </div>
+      <div class="notice-item">
+        <span class="notice-date">2026.04.12</span>
+        <span class="notice-badge badge-hot">HOT</span>
+        <span class="notice-text">2026년 03월 고1 모의고사 21~24번 어휘·어법 퀴즈 오픈</span>
+      </div>
+      <div class="notice-item">
+        <span class="notice-date">2026.04.12</span>
+        <span class="notice-badge badge-hot">HOT</span>
+        <span class="notice-text">레이첼영어전문 학습 사이트 오픈</span>
+      </div>
+      <div class="notice-item">
+        <span class="notice-date">예정</span>
+        <span class="notice-badge badge-plan">예정</span>
+        <span class="notice-text">25~28번 어휘·어법 퀴즈 추가 예정</span>
+      </div>
+      <div class="notice-item">
+        <span class="notice-date">예정</span>
+        <span class="notice-badge badge-plan">예정</span>
+        <span class="notice-text">빈칸 추론·순서 배열 심화 문제 추가 예정</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCHEDULE -->
+<section id="schedule">
+  <div class="wrap">
+    <p class="section-title">시험 일정</p>
+    <p class="section-sub">2026년 고1 모의고사 일정</p>
+    <div class="schedule-list">
+      <div class="schedule-item">
+        <div>
+          <div class="sch-title">3월 고1 전국연합학력평가</div>
+          <div class="sch-sub">2026년 3월 시행 · 경기도교육청 주관</div>
+        </div>
+        <span class="sch-badge sch-active">수록됨</span>
+      </div>
+      <div class="schedule-item">
+        <div>
+          <div class="sch-title">6월 고1 전국연합학력평가</div>
+          <div class="sch-sub">2026년 6월 예정 · 부산광역시교육청 주관</div>
+        </div>
+        <span class="sch-badge sch-ready">준비 중</span>
+      </div>
+      <div class="schedule-item">
+        <div>
+          <div class="sch-title">9월 고1 전국연합학력평가</div>
+          <div class="sch-sub">2026년 9월 예정 · 인천광역시교육청 주관</div>
+        </div>
+        <span class="sch-badge sch-ready">준비 중</span>
+      </div>
+      <div class="schedule-item">
+        <div>
+          <div class="sch-title">11월 고1 전국연합학력평가</div>
+          <div class="sch-sub">2026년 11월 예정 · 서울특별시교육청 주관</div>
+        </div>
+        <span class="sch-badge sch-ready">준비 중</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">레이첼<span>영어전문</span></div>
+  <p style="font-size:13px;">고등학교 영어 내신·수능 전문</p>
+  <div class="footer-links">
+    <a href="quiz.html">퀴즈 풀기</a>
+    <a href="#subjects">학습 자료</a>
+    <a href="#notice">공지사항</a>
+    <a href="#schedule">시험 일정</a>
+  </div>
+  <p class="footer-copy">© 2026 Rachel English Academy. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
