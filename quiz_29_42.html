@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>레이첼영어전문 — 29~42번 종합 문제</title>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700&family=Pretendard:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f8f6f1;--surface:#ffffff;--surface2:#f2efe8;--border:#e4dfd5;
+  --ink:#1a1816;--ink2:#5a5550;--ink3:#9a9590;
+  --gold:#b8924a;--gold2:#d4aa66;
+  --correct:#2e7d52;--wrong:#c0392b;--blue:#2563a8;--purple:#6b3fa0;
+  --r:10px;--ease:cubic-bezier(.4,0,.2,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Pretendard',sans-serif;background:var(--bg);color:var(--ink);line-height:1.75;font-size:15px;}
+
+/* ── NAV ── */
+.nav{position:sticky;top:0;z-index:200;background:rgba(248,246,241,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 24px;height:56px;}
+.nav-logo{font-family:'Nanum Myeongjo',serif;font-size:16px;font-weight:700;color:var(--ink);}
+.nav-logo span{color:var(--gold);}
+.nav-right{display:flex;align-items:center;gap:14px;font-size:13px;color:var(--ink3);}
+.nav-right b{color:var(--ink);font-size:15px;}
+
+/* ── HERO ── */
+.hero{background:var(--ink);color:#fff;padding:40px 24px 32px;text-align:center;}
+.hero-tag{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold2);margin-bottom:10px;}
+.hero h1{font-family:'Nanum Myeongjo',serif;font-size:clamp(24px,5vw,38px);font-weight:700;line-height:1.2;margin-bottom:10px;}
+.hero p{font-size:14px;color:rgba(255,255,255,.6);max-width:520px;margin:0 auto 20px;}
+.hero-chips{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;}
+.hchip{font-size:11px;padding:4px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.7);}
+
+/* ── TAB NAV ── */
+.tab-nav{position:sticky;top:56px;z-index:190;background:rgba(248,246,241,0.97);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);display:flex;overflow-x:auto;padding:0 12px;}
+.tab-nav::-webkit-scrollbar{height:3px;}
+.tab-nav::-webkit-scrollbar-thumb{background:var(--gold2);border-radius:999px;}
+.tb{padding:13px 16px;font-size:13px;font-weight:500;color:var(--ink3);background:none;border:none;cursor:pointer;white-space:nowrap;position:relative;transition:color .2s;}
+.tb::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--gold);transform:scaleX(0);transition:transform .2s var(--ease);}
+.tb.active{color:var(--gold);}
+.tb.active::after{transform:scaleX(1);}
+.tb:hover{color:var(--ink);}
+
+/* ── SECTIONS ── */
+.section{display:none;padding:28px 24px 80px;max-width:860px;margin:0 auto;}
+.section.active{display:block;}
+
+/* ── PASSAGE NUMBER CARD ── */
+.qno-header{display:flex;align-items:flex-start;gap:14px;margin-bottom:18px;}
+.qno-badge{background:var(--gold);color:#fff;font-size:12px;font-weight:700;padding:4px 12px;border-radius:999px;flex-shrink:0;margin-top:2px;}
+.qno-info .qno-title{font-family:'Nanum Myeongjo',serif;font-size:18px;font-weight:700;color:var(--ink);}
+.qno-info .qno-topic{font-size:12px;color:var(--ink3);margin-top:3px;}
+
+/* ── PASSAGE ── */
+.passage{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:22px 24px;font-size:14.5px;line-height:2;color:var(--ink);margin-bottom:18px;position:relative;}
+.passage .topic-label{position:absolute;top:-1px;right:16px;background:var(--surface2);border:1px solid var(--border);border-top:none;border-radius:0 0 8px 8px;font-size:11px;font-weight:600;color:var(--ink3);padding:3px 10px;letter-spacing:.04em;}
+
+/* ── INLINE VOCAB SELECT ── */
+.vs{display:inline-flex;align-items:center;background:var(--surface2);border:1.5px solid var(--border);border-radius:6px;padding:1px 5px;margin:0 1px;vertical-align:middle;transition:border-color .2s;}
+.vs:hover{border-color:var(--gold2);}
+.vs sup{font-size:9px;color:var(--ink3);margin-right:2px;}
+.vs .opts{display:flex;gap:3px;align-items:center;}
+.vbtn{font-size:12px;font-weight:500;padding:2px 7px;border-radius:4px;border:1px solid transparent;background:transparent;color:var(--ink2);cursor:pointer;transition:all .15s;white-space:nowrap;}
+.vbtn:hover{background:var(--border);color:var(--ink);}
+.vbtn.sel{background:var(--gold);color:#fff;border-color:var(--gold);font-weight:600;}
+.vbtn.ok{background:var(--correct)!important;color:#fff!important;border-color:var(--correct)!important;}
+.vbtn.ng{background:var(--wrong)!important;color:#fff!important;border-color:var(--wrong)!important;}
+.vbtn.hint{background:rgba(46,125,82,.15)!important;color:var(--correct)!important;border-color:var(--correct)!important;}
+.vdiv{font-size:10px;color:var(--ink3);}
+
+/* ── GRAMMAR QUESTION ── */
+.gq{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:18px 20px;margin-bottom:12px;}
+.gq .qlabel{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:8px;}
+.gq .qtext{font-size:14px;line-height:1.9;color:var(--ink);margin-bottom:10px;}
+.gq .qtext em{color:var(--gold);font-style:normal;font-weight:600;text-decoration:underline;text-decoration-color:rgba(184,146,74,.4);text-underline-offset:3px;}
+.gopts{display:flex;gap:8px;flex-wrap:wrap;}
+.gopt{padding:6px 18px;border-radius:6px;border:1.5px solid var(--border);background:var(--surface2);color:var(--ink2);font-size:13px;font-weight:500;cursor:pointer;transition:all .15s;}
+.gopt:hover{border-color:var(--gold2);color:var(--ink);}
+.gopt.sel{border-color:var(--gold);background:rgba(184,146,74,.1);color:var(--gold);}
+.gopt.ok{border-color:var(--correct)!important;background:rgba(46,125,82,.1)!important;color:var(--correct)!important;}
+.gopt.ng{border-color:var(--wrong)!important;background:rgba(192,57,43,.08)!important;color:var(--wrong)!important;}
+.gopt.hint{border-color:var(--correct);color:var(--correct);opacity:.6;}
+.qexp{font-size:12px;color:var(--ink3);margin-top:8px;display:none;line-height:1.6;padding:8px 12px;background:var(--surface2);border-radius:6px;}
+.qexp.show{display:block;}
+.qexp .ec{color:var(--correct);font-weight:600;}
+
+/* ── ORDER QUESTION ── */
+.order-q{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:20px 22px;margin-bottom:14px;}
+.order-intro{font-size:14px;color:var(--ink);line-height:1.9;margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid var(--border);}
+.order-paras{display:flex;flex-direction:column;gap:10px;margin-bottom:16px;}
+.para-block{background:var(--surface2);border:1px solid var(--border);border-radius:7px;padding:12px 14px;}
+.para-label{font-size:11px;font-weight:700;color:var(--gold);margin-bottom:5px;letter-spacing:.06em;}
+.para-text{font-size:13.5px;color:var(--ink);line-height:1.8;}
+.order-opts{display:flex;gap:8px;flex-wrap:wrap;}
+.oopt{padding:7px 16px;border-radius:6px;border:1.5px solid var(--border);background:var(--surface2);color:var(--ink2);font-size:13px;font-weight:600;cursor:pointer;transition:all .15s;font-family:'Pretendard',sans-serif;}
+.oopt:hover{border-color:var(--gold2);color:var(--ink);}
+.oopt.sel{border-color:var(--gold);background:rgba(184,146,74,.12);color:var(--gold);}
+.oopt.ok{border-color:var(--correct)!important;background:rgba(46,125,82,.1)!important;color:var(--correct)!important;}
+.oopt.ng{border-color:var(--wrong)!important;background:rgba(192,57,43,.08)!important;color:var(--wrong)!important;}
+.oopt.hint{border-color:var(--correct);color:var(--correct);opacity:.6;}
+
+/* ── BLANK QUESTION ── */
+.blank-q{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:20px 22px;margin-bottom:14px;}
+.blank-passage{font-size:14px;line-height:2;color:var(--ink);margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--border);}
+.blank-slot{display:inline-block;min-width:100px;border-bottom:2px solid var(--gold);padding:0 6px;text-align:center;color:var(--gold);font-weight:600;font-size:13px;vertical-align:middle;}
+.blank-choices{display:flex;flex-direction:column;gap:7px;}
+.bchoice{display:flex;align-items:flex-start;gap:10px;padding:9px 14px;border-radius:7px;border:1.5px solid var(--border);background:var(--surface2);cursor:pointer;transition:all .15s;font-size:13px;color:var(--ink2);}
+.bchoice:hover{border-color:var(--gold2);color:var(--ink);}
+.bchoice .bnum{font-weight:700;color:var(--gold);flex-shrink:0;min-width:16px;}
+.bchoice.sel{border-color:var(--gold);background:rgba(184,146,74,.08);color:var(--ink);}
+.bchoice.ok{border-color:var(--correct)!important;background:rgba(46,125,82,.08)!important;color:var(--correct)!important;}
+.bchoice.ng{border-color:var(--wrong)!important;background:rgba(192,57,43,.06)!important;color:var(--wrong)!important;}
+.bchoice.hint{border-color:var(--correct);background:rgba(46,125,82,.05);opacity:.65;}
+
+/* ── SUMMARY QUESTION ── */
+.summary-q{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:20px 22px;margin-bottom:14px;}
+.summary-text{font-size:14px;line-height:2;color:var(--ink);background:var(--surface2);border-radius:7px;padding:14px 16px;margin-bottom:14px;}
+.sumslot{display:inline-block;min-width:80px;border-bottom:2px solid var(--purple);padding:0 5px;color:var(--purple);font-weight:600;text-align:center;vertical-align:middle;}
+.sum-choices{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.schoice{padding:8px 12px;border-radius:7px;border:1.5px solid var(--border);background:var(--surface2);cursor:pointer;transition:all .15s;font-size:13px;}
+.schoice:hover{border-color:var(--purple);color:var(--ink);}
+.schoice .sn{font-weight:700;color:var(--purple);margin-right:6px;}
+.schoice.sel{border-color:var(--purple);background:rgba(107,63,160,.08);color:var(--ink);}
+.schoice.ok{border-color:var(--correct)!important;background:rgba(46,125,82,.08)!important;color:var(--correct)!important;}
+.schoice.ng{border-color:var(--wrong)!important;background:rgba(192,57,43,.06)!important;color:var(--wrong)!important;}
+.schoice.hint{border-color:var(--correct);opacity:.6;}
+
+/* ── INSERT QUESTION ── */
+.insert-q{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:20px 22px;margin-bottom:14px;}
+.insert-sentence{background:rgba(107,63,160,.06);border:1px solid rgba(107,63,160,.2);border-radius:7px;padding:12px 14px;font-size:14px;font-style:italic;color:var(--purple);margin-bottom:14px;line-height:1.8;}
+.insert-passage{font-size:14px;line-height:2.1;color:var(--ink);}
+.ins-marker{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:var(--surface2);border:1.5px solid var(--border);font-size:11px;font-weight:700;color:var(--ink3);margin:0 3px;vertical-align:middle;cursor:pointer;transition:all .15s;}
+.ins-marker:hover{border-color:var(--purple);color:var(--purple);}
+.ins-marker.sel{background:var(--purple);color:#fff;border-color:var(--purple);}
+.ins-marker.ok{background:var(--correct)!important;color:#fff!important;border-color:var(--correct)!important;}
+.ins-marker.ng{background:var(--wrong)!important;color:#fff!important;border-color:var(--wrong)!important;}
+
+/* ── SECTION SCORE ── */
+.sec-score-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:10px;}
+.sec-score-bar .title{font-family:'Nanum Myeongjo',serif;font-size:18px;font-weight:700;color:var(--ink);}
+.sec-score-bar .sub{font-size:12px;color:var(--ink3);margin-top:2px;}
+.btn{padding:9px 20px;border-radius:7px;font-size:13px;font-weight:600;cursor:pointer;border:none;transition:all .2s var(--ease);}
+.btn-gold{background:var(--gold);color:#fff;}
+.btn-gold:hover{background:var(--gold2);transform:translateY(-1px);}
+.btn-outline{background:transparent;color:var(--ink2);border:1.5px solid var(--border);}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold);}
+.brow{display:flex;gap:8px;flex-wrap:wrap;}
+
+/* ── RESULT TAB ── */
+.result-hero{text-align:center;padding:40px 0 28px;}
+.score-big{font-family:'Nanum Myeongjo',serif;font-size:80px;font-weight:700;color:var(--gold);line-height:1;}
+.score-big span{font-size:30px;color:var(--ink3);}
+.score-msg{font-size:16px;color:var(--ink2);margin-top:10px;}
+.score-panel{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:26px;margin-top:20px;}
+.score-panel h3{font-family:'Nanum Myeongjo',serif;font-size:17px;color:var(--ink);margin-bottom:18px;}
+.score-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px;margin-bottom:20px;}
+.sc{background:var(--surface2);border-radius:8px;padding:14px;text-align:center;}
+.sc .n{font-size:26px;font-weight:700;font-family:'Nanum Myeongjo',serif;}
+.sc .l{font-size:11px;color:var(--ink3);margin-top:3px;}
+.sc.tot .n{color:var(--gold);}
+.sc.cor .n{color:var(--correct);}
+.sc.wro .n{color:var(--wrong);}
+.sc.ski .n{color:var(--ink3);}
+.pbar{height:8px;background:var(--surface2);border-radius:999px;overflow:hidden;margin-bottom:18px;}
+.pfill{height:100%;background:linear-gradient(90deg,var(--correct),var(--gold));border-radius:999px;transition:width .7s var(--ease);}
+.by-tbl{width:100%;border-collapse:collapse;font-size:13px;}
+.by-tbl td{padding:8px 10px;border-bottom:1px solid var(--border);vertical-align:middle;}
+.by-tbl td:first-child{color:var(--ink2);}
+.by-tbl td:last-child{text-align:right;font-weight:600;}
+.grade-pill{display:inline-block;padding:4px 14px;border-radius:999px;font-size:13px;font-weight:600;margin-top:14px;}
+
+/* ── STICKY BOTTOM ── */
+.sticky{position:fixed;bottom:0;left:0;right:0;background:rgba(248,246,241,.97);backdrop-filter:blur(10px);border-top:1px solid var(--border);padding:10px 24px;display:flex;align-items:center;justify-content:center;gap:10px;z-index:300;}
+
+/* ── ANS COUNT ── */
+.ac{font-size:12px;color:var(--ink3);margin-top:6px;}
+
+/* ── MOBILE ── */
+@media(max-width:600px){
+  .sum-choices{grid-template-columns:1fr;}
+  .passage,.blank-passage,.insert-passage{font-size:13.5px;}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-logo">레이첼영어전문 <span>·</span> 29~42번</div>
+  <div class="nav-right">답변 <b id="hd-ans">0</b>/<b id="hd-tot">0</b></div>
+</nav>
+
+<div class="hero">
+  <div class="hero-tag">2026년 03월 고1 모의고사</div>
+  <h1>29~42번 종합 문제</h1>
+  <p>어휘 선택 · 어법 선택 · 글의 순서 · 빈칸 추론 · 요약 빈칸 · 문장 삽입 + 자동 채점</p>
+  <div class="hero-chips">
+    <span class="hchip">어휘 선택</span>
+    <span class="hchip">어법 O/X</span>
+    <span class="hchip">글의 순서 A·B·C</span>
+    <span class="hchip">빈칸 추론 ①~⑤</span>
+    <span class="hchip">요약 빈칸 (a)(b)</span>
+    <span class="hchip">문장 삽입 1~5</span>
+  </div>
+</div>
+
+<!-- TAB NAV -->
+<nav class="tab-nav" id="tabnav">
+  <button class="tb active" onclick="sw('ov')">개요</button>
+  <button class="tb" onclick="sw('s29')">29번</button>
+  <button class="tb" onclick="sw('s30')">30번</button>
+  <button class="tb" onclick="sw('s31')">31번</button>
+  <button class="tb" onclick="sw('s32')">32번</button>
+  <button class="tb" onclick="sw('s33')">33번</button>
+  <button class="tb" onclick="sw('s34')">34번</button>
+  <button class="tb" onclick="sw('s35')">35번</button>
+  <button class="tb" onclick="sw('s36')">36번</button>
+  <button class="tb" onclick="sw('s37')">37번</button>
+  <button class="tb" onclick="sw('s38')">38번</button>
+  <button class="tb" onclick="sw('s39')">39번</button>
+  <button class="tb" onclick="sw('s40')">40번</button>
+  <button class="tb" onclick="sw('s4142')">41~42번</button>
+  <button class="tb" onclick="sw('res')">채점 결과</button>
+</nav>
+
+<!-- ══════════ OVERVIEW ══════════ -->
+<div class="section active" id="tab-ov">
+  <div style="margin-bottom:24px;">
+    <div style="font-family:'Nanum Myeongjo',serif;font-size:22px;font-weight:700;margin-bottom:6px;">문제 개요</div>
+    <div style="font-size:13px;color:var(--ink3);">각 지문을 클릭해서 문제를 푸세요</div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px;margin-bottom:28px;">
+    <div onclick="sw('s29')" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:18px 20px;cursor:pointer;transition:all .2s;" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='var(--border)'">
+      <div style="font-size:11px;color:var(--gold);font-weight:600;margin-bottom:5px;">29번</div>
+      <div style="font-size:14px;font-weight:600;margin-bottom:4px;">단순화된 개념 모형</div>
+      <div style="font-size:12px;color:var(--ink3);">어휘·어법·빈칸·문장삽입</div>
+    </div>
+    <div onclick="sw('s30')" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:18px 20px;cursor:pointer;transition:all .2s;" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='var(--border)'">
+      <div style="font-size:11px;color:var(--gold);font-weight:600;margin-bottom:5px;">30번</div>
+      <div style="font-size:14px;font-weight:600;margin-bottom:4px;">개발도상국에서 걷기</div>
+      <div style="font-size:12px;color:var(--ink3);">어휘·어법·순서·빈칸</div>
+    </div>
+    <div onclick="sw('s31')" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:18px 20px;cursor:pointer;transition:all .2s;" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='var(--border)'">
+      <div style="font-size:11px;color:var(--gold);font-weight:600;margin-bottom:5px;">31번</div>
+      <div style="font-size:14px;font-weight:600;margin-bottom:4px;">아이 놀이 공간 단순화</div>
+      <div style="font-size:12px;color:var(--ink3);">어휘·어법·빈칸·요약</div>
+    </div>
+    <div onclick="sw('s32')" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:18px 20px;cursor:pointer;transition:all .2s;" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='var(--border)'">
+      <div style="font-size:11px;color:var(--gold);font-weight:600;margin-bottom:5px;">32번</div>
+      <div style="font-size:14px;font-weight:600;margin-bottom:4px;">친숙함과 진정한 숙달</div>
+      <div style="font-size:12px;color:var(--ink3);">어휘·어법·빈칸·문장삽입</div>
+    </div>
+    <div onclick="sw('s33')" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:18px 20px;cursor:pointer;transition:all .2s;" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='var(--border)'">
+      <div style="font-size:11px;color:var(--gold);font-weight:600;margin-bottom:5px;">33번</div>
+      <div style="font-size:14px;font-weight:600;margin-bottom:4px;">수메르의 숫자 해방</div>
+      <div style="font-size:12px;color:var(--ink3);">어휘·어법·순서·빈칸</div>
+    </div>
+    <div onclick="sw('s34')" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:18px 20px;cursor:pointer;transition:all .2s;" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='var(--border)'">
+      <div style="font-size:11px;color:var(--gold);font-weight:600;margin-bottom:5px;">34번</div>
+      <div style="font-size:14px;font-weight:600;margin-bottom:4px;">내집단 모방의 목적</div>
+      <div style="font-size:12px;color:var(--ink3);">어휘·어법·빈칸·문장삽입</div>
+    </div>
+    <div onclick="sw('s35')" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:18px 20px;cursor:pointer;transition:all .2s;" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='var(--border)'">
+      <div style="font-size:11px;color:var(--gold);font-weight:600;margin-bottom:5px;">35번</div>
+      <div style="font-size:14px;font-weight:600;margin-bottom:4px;">체중 설정점 이론</div>
+      <div style="font-size:12px;color:var(--ink3);">어휘·어법·빈칸·요약</div>
+    </div>
+    <div onclick="sw('s36')" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:18px 20px;cursor:pointer;transition:all .2s;" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='var(--border)'">
+      <div style="font-size:11px;color:var(--gold);font-weight:600;margin-bottom:5px;">36번</div>
+      <div style="font-size:14px;font-weight:600;margin-bottom:4px;">less is more 관용구</div>
+      <div style="font-size:12px;color:var(--ink3);">어휘·어법·순서·빈칸</div>
+    </div>
+    <div onclick="sw('s37')" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:18px 20px;cursor:pointer;transition:all .2s;" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='var(--border)'">
+      <div style="font-size:11px;color:var(--gold);font-weight:600;margin-bottom:5px;">37번</div>
+      <div style="font-size:14px;font-weight:600;margin-bottom:4px;">플라스틱 산업의 역사</div>
+      <div style="font-size:12px;color:var(--ink3);">어휘·어법·순서·빈칸</div>
+    </div>
+    <div onclick="sw('s38')" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:18px 20px;cursor:pointer;transition:all .2s;" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='var(--border)'">
+      <div style="font-size:11px;color:var(--gold);font-weight:600;margin-bottom:5px;">38번</div>
+      <div style="font-size:14px;font-weight:600;margin-bottom:4px;">쿤의 패러다임 이론</div>
+      <div style="font-size:12px;color:var(--ink3);">어휘·어법·빈칸·문장삽입</div>
+    </div>
+    <div onclick="sw('s39')" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:18px 20px;cursor:pointer;transition:all .2s;" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='var(--border)'">
+      <div style="font-size:11px;color:var(--gold);font-weight:600;margin-bottom:5px;">39번</div>
+      <div style="font-size:14px;font-weight:600;margin-bottom:4px;">온실 겨울 수확</div>
+      <div style="font-size:12px;color:var(--ink3);">어휘·어법·순서·빈칸</div>
+    </div>
+    <div onclick="sw('s40')" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:18px 20px;cursor:pointer;transition:all .2s;" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='var(--border)'">
+      <div style="font-size:11px;color:var(--gold);font-weight:600;margin-bottom:5px;">40번</div>
+      <div style="font-size:14px;font-weight:600;margin-bottom:4px;">육아와 독립심</div>
+      <div style="font-size:12px;color:var(--ink3);">어휘·어법·빈칸·요약</div>
+    </div>
+    <div onclick="sw('s4142')" style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:18px 20px;cursor:pointer;transition:all .2s;" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='var(--border)'">
+      <div style="font-size:11px;color:var(--gold);font-weight:600;margin-bottom:5px;">41~42번</div>
+      <div style="font-size:14px;font-weight:600;margin-bottom:4px;">인내의 역설적 힘</div>
+      <div style="font-size:12px;color:var(--ink3);">어휘·어법·빈칸·문장삽입</div>
+    </div>
+  </div>
+  <div class="brow">
+    <button class="btn btn-gold" onclick="sw('s29')">29번부터 시작 →</button>
+    <button class="btn btn-outline" onclick="scoreAll()">전체 채점하기</button>
+  </div>
+</div>
+
+<!-- ══════════ 29번 ══════════ -->
+<div class="section" id="tab-s29">
+  <div class="sec-score-bar">
+    <div><div class="title">29번 — 단순화된 개념 모형의 유용성과 한계</div><div class="sub">개념 모형은 유용하기만 하면 정확하지 않아도 되지만, 때로 혼란을 줄 수 있다</div></div>
+    <div class="brow"><button class="btn btn-outline" onclick="scoreSection('29')">채점</button><button class="btn btn-gold" onclick="sw('s30')">다음 →</button></div>
+  </div>
+
+  <!-- 어휘 -->
+  <div style="font-size:13px;font-weight:600;color:var(--blue);margin-bottom:8px;letter-spacing:.05em;">▶ 어휘 선택</div>
+  <div class="passage">
+    A <span class="vs" id="qv29_1"><sup>1)</sup><span class="opts"><button class="vbtn" data-q="v29_1" data-v="abstract" onclick="vp(this)">abstract</button><span class="vdiv">/</span><button class="vbtn" data-q="v29_1" data-v="concrete" onclick="vp(this)">concrete</button></span></span> model is a <span class="vs" id="qv29_2"><sup>2)</sup><span class="opts"><button class="vbtn" data-q="v29_2" data-v="confusion" onclick="vp(this)">confusion</button><span class="vdiv">/</span><button class="vbtn" data-q="v29_2" data-v="description" onclick="vp(this)">description</button></span></span>, usually highly simplified, of how something works. It doesn't have to be complete or even <span class="vs" id="qv29_3"><sup>3)</sup><span class="opts"><button class="vbtn" data-q="v29_3" data-v="correct" onclick="vp(this)">correct</button><span class="vdiv">/</span><button class="vbtn" data-q="v29_3" data-v="wrong" onclick="vp(this)">wrong</button></span></span> as long as it is <span class="vs" id="qv29_4"><sup>4)</sup><span class="opts"><button class="vbtn" data-q="v29_4" data-v="helpful" onclick="vp(this)">helpful</button><span class="vdiv">/</span><button class="vbtn" data-q="v29_4" data-v="useless" onclick="vp(this)">useless</button></span></span>. The files, folders, and icons you see <span class="vs" id="qv29_5"><sup>5)</sup><span class="opts"><button class="vbtn" data-q="v29_5" data-v="exhibited" onclick="vp(this)">exhibited</button><span class="vdiv">/</span><button class="vbtn" data-q="v29_5" data-v="hidden" onclick="vp(this)">hidden</button></span></span> on a computer screen help people create the conceptual model. In fact, there are no folders inside the computer — those are <span class="vs" id="qv29_6"><sup>6)</sup><span class="opts"><button class="vbtn" data-q="v29_6" data-v="useful" onclick="vp(this)">useful</button><span class="vdiv">/</span><button class="vbtn" data-q="v29_6" data-v="useless" onclick="vp(this)">useless</button></span></span> conceptualizations. Sometimes these depictions can add to the <span class="vs" id="qv29_7"><sup>7)</sup><span class="opts"><button class="vbtn" data-q="v29_7" data-v="bewilderment" onclick="vp(this)">bewilderment</button><span class="vdiv">/</span><button class="vbtn" data-q="v29_7" data-v="clarity" onclick="vp(this)">clarity</button></span></span>, however. The conceptual model is of one, <span class="vs" id="qv29_8"><sup>8)</sup><span class="opts"><button class="vbtn" data-q="v29_8" data-v="consistent" onclick="vp(this)">consistent</button><span class="vdiv">/</span><button class="vbtn" data-q="v29_8" data-v="illogical" onclick="vp(this)">illogical</button></span></span> image, whereas it may actually consist of parts.
+  </div>
+
+  <!-- 어법 -->
+  <div style="font-size:13px;font-weight:600;color:var(--blue);margin:16px 0 8px;letter-spacing:.05em;">▶ 어법 선택 (O = 올바름 / X = 틀림)</div>
+  <div class="gq"><div class="qlabel">29번 어법 ①</div><div class="qtext">The files, folders, and icons <em>you see displayed</em> on a computer screen help people create the conceptual model.</div><div class="gopts"><button class="gopt" data-gq="g29_1" data-v="O" onclick="gp(this)">O — 올바르다</button><button class="gopt" data-gq="g29_1" data-v="X" onclick="gp(this)">X — 틀리다</button></div><div class="qexp" id="eg29_1"><span class="ec">정답: O</span> — you see는 목적격관계대명사 생략, displayed는 과거분사로 수동 수식. 어법상 올바름.</div></div>
+  <div class="gq"><div class="qlabel">29번 어법 ②</div><div class="qtext">…whereas it may actually <em>consist of</em> parts, each located on different machines <em>that could be</em> almost anywhere.</div><div class="gopts"><button class="gopt" data-gq="g29_2" data-v="O" onclick="gp(this)">O — 올바르다</button><button class="gopt" data-gq="g29_2" data-v="X" onclick="gp(this)">X — 틀리다</button></div><div class="qexp" id="eg29_2"><span class="ec">정답: O</span> — consist of는 자동사구(수동 불가), that은 주격관계대명사. 어법상 올바름.</div></div>
+
+  <!-- 빈칸 -->
+  <div style="font-size:13px;font-weight:600;color:var(--blue);margin:16px 0 8px;letter-spacing:.05em;">▶ 빈칸 추론</div>
+  <div class="blank-q">
+    <div class="blank-passage">A conceptual model is a description, usually highly simplified, of how something works. It doesn't have to be complete or even accurate as long as it is useful. <span class="blank-slot">&nbsp;&nbsp;(A)&nbsp;&nbsp;</span> Sometimes these depictions can add to the confusion. When reading e-mail, the material appears to be on the device, but in fact, the actual material is "in the cloud," located on some distant machine.</div>
+    <div class="blank-choices">
+      <div class="bchoice" data-bq="b29_1" data-v="1" onclick="bp(this)"><span class="bnum">①</span> The conceptual model is therefore always perfectly accurate.</div>
+      <div class="bchoice" data-bq="b29_1" data-v="2" onclick="bp(this)"><span class="bnum">②</span> These depictions help users understand exactly how technology works.</div>
+      <div class="bchoice" data-bq="b29_1" data-v="3" onclick="bp(this)"><span class="bnum">③</span> The files and folders are useful conceptualizations designed to make computers easier to use.</div>
+      <div class="bchoice" data-bq="b29_1" data-v="4" onclick="bp(this)"><span class="bnum">④</span> In fact, all digital data must be stored locally on your personal device.</div>
+      <div class="bchoice" data-bq="b29_1" data-v="5" onclick="bp(this)"><span class="bnum">⑤</span> Scientists reject simplified models in favor of complete accuracy.</div>
+    </div>
+  </div>
+
+  <!-- 문장 삽입 -->
+  <div style="font-size:13px;font-weight:600;color:var(--blue);margin:16px 0 8px;letter-spacing:.05em;">▶ 문장 삽입</div>
+  <div class="insert-q">
+    <div class="insert-sentence">But in fact, in many cases the actual material is "in the cloud," located on some distant machine.</div>
+    <div class="insert-passage">
+      A conceptual model is a description, usually highly simplified, of how something works. <span class="ins-marker" data-iq="i29_1" data-v="1" onclick="ip(this)">1</span> It doesn't have to be complete or even accurate as long as it is useful. <span class="ins-marker" data-iq="i29_1" data-v="2" onclick="ip(this)">2</span> The files, folders, and icons you see displayed on a computer screen help people create conceptual models. <span class="ins-marker" data-iq="i29_1" data-v="3" onclick="ip(this)">3</span> Sometimes these depictions can add to the confusion, however. <span class="ins-marker" data-iq="i29_1" data-v="4" onclick="ip(this)">4</span> When reading e-mail or visiting a website, the material appears to be on the device, for that is where it is displayed and used. <span class="ins-marker" data-iq="i29_1" data-v="5" onclick="ip(this)">5</span> The conceptual model is of one, coherent image, whereas it may actually consist of parts, each located on different machines.
+    </div>
+  </div>
+  <div class="ac" id="ac-29"></div>
+</div>
+
+<!-- ══════════ 30번 ══════════ -->
+<div class="section" id="tab-s30">
+  <div class="sec-score-bar">
+    <div><div class="title">30번 — 개발도상국과 선진국에서 걷기의 상반된 의미</div><div class="sub">개발도상국에서 걷기는 부담, 선진국에서는 건강한 운동</div></div>
+    <div class="brow"><button class="btn btn-outline" onclick="scoreSection('30')">채점</button><button class="btn btn-gold" onclick="sw('s31')">다음 →</button></div>
+  </div>
+
+  <div style="font-size:13px;font-weight:600;color:var(--blue);margin-bottom:8px;letter-spacing:.05em;">▶ 어휘 선택</div>
+  <div class="passage">
+    The <span class="vs" id="qv30_1"><sup>1)</sup><span class="opts"><button class="vbtn" data-q="v30_1" data-v="main" onclick="vp(this)">main</button><span class="vdiv">/</span><button class="vbtn" data-q="v30_1" data-v="secondary" onclick="vp(this)">secondary</button></span></span> transportation mode in the developing world is still walking because of constraints on the resources needed to <span class="vs" id="qv30_2"><sup>2)</sup><span class="opts"><button class="vbtn" data-q="v30_2" data-v="halt" onclick="vp(this)">halt</button><span class="vdiv">/</span><button class="vbtn" data-q="v30_2" data-v="run" onclick="vp(this)">run</button></span></span> extensive transit systems. People cover long distances on foot and <span class="vs" id="qv30_3"><sup>3)</sup><span class="opts"><button class="vbtn" data-q="v30_3" data-v="save" onclick="vp(this)">save</button><span class="vdiv">/</span><button class="vbtn" data-q="v30_3" data-v="spend" onclick="vp(this)">spend</button></span></span> human energy they can hardly spare. Walking is an <span class="vs" id="qv30_4"><sup>4)</sup><span class="opts"><button class="vbtn" data-q="v30_4" data-v="avoidable" onclick="vp(this)">avoidable</button><span class="vdiv">/</span><button class="vbtn" data-q="v30_4" data-v="inevitable" onclick="vp(this)">inevitable</button></span></span> burden that consumes productive <span class="vs" id="qv30_5"><sup>5)</sup><span class="opts"><button class="vbtn" data-q="v30_5" data-v="ability" onclick="vp(this)">ability</button><span class="vdiv">/</span><button class="vbtn" data-q="v30_5" data-v="incapacity" onclick="vp(this)">incapacity</button></span></span>. In North America and Europe, however, walking is <span class="vs" id="qv30_6"><sup>6)</sup><span class="opts"><button class="vbtn" data-q="v30_6" data-v="effective" onclick="vp(this)">effective</button><span class="vdiv">/</span><button class="vbtn" data-q="v30_6" data-v="wasteful" onclick="vp(this)">wasteful</button></span></span>, healthful, and natural. Ironically, treadmills simulate walking, which could be otherwise <span class="vs" id="qv30_7"><sup>7)</sup><span class="opts"><button class="vbtn" data-q="v30_7" data-v="achieved" onclick="vp(this)">achieved</button><span class="vdiv">/</span><button class="vbtn" data-q="v30_7" data-v="failed" onclick="vp(this)">failed</button></span></span> with a transport purpose on the street.
+  </div>
+
+  <div style="font-size:13px;font-weight:600;color:var(--blue);margin:16px 0 8px;letter-spacing:.05em;">▶ 어법 선택</div>
+  <div class="gq"><div class="qlabel">30번 어법 ①</div><div class="qtext">People cover long distances on foot every day and expend human energy <em>that they can hardly spare</em>.</div><div class="gopts"><button class="gopt" data-gq="g30_1" data-v="O" onclick="gp(this)">O — 올바르다</button><button class="gopt" data-gq="g30_1" data-v="X" onclick="gp(this)">X — 틀리다</button></div><div class="qexp" id="eg30_1"><span class="ec">정답: O</span> — that은 목적격 관계대명사로 human energy를 수식. can hardly spare = 거의 내줄 수 없다. 어법상 올바름.</div></div>
+  <div class="gq"><div class="qlabel">30번 어법 ②</div><div class="qtext">…among the most popular exercise machines in health clubs and in homes are treadmills <em>that simulate walking</em>, which could be otherwise accomplished with a transport purpose on the street.</div><div class="gopts"><button class="gopt" data-gq="g30_2" data-v="O" onclick="gp(this)">O — 올바르다</button><button class="gopt" data-gq="g30_2" data-v="X" onclick="gp(this)">X — 틀리다</button></div><div class="qexp" id="eg30_2"><span class="ec">정답: O</span> — 장소부사구 도치 구문(among ~ are treadmills), that simulate = 주격관계대명사절. 어법상 올바름.</div></div>
+
+  <div style="font-size:13px;font-weight:600;color:var(--blue);margin:16px 0 8px;letter-spacing:.05em;">▶ 글의 순서</div>
+  <div class="order-q">
+    <div class="order-intro">The principal transportation mode in the developing world, even in large cities, is still walking because of constraints on the resources needed to operate extensive transit systems.</div>
+    <div class="order-paras">
+      <div class="para-block"><div class="para-label">(A)</div><div class="para-text">In North America and Western Europe, however, the attitude and policies are just the opposite: walking is efficient, healthful, and natural. We should do more of it — almost everybody agrees — and some of the current trends should be reversed.</div></div>
+      <div class="para-block"><div class="para-label">(B)</div><div class="para-text">Ironically, among the most popular exercise machines in health clubs and in homes are treadmills that simulate walking, which could be otherwise accomplished with a transport purpose on the street.</div></div>
+      <div class="para-block"><div class="para-label">(C)</div><div class="para-text">People cover long distances on foot every day and expend human energy that they can hardly spare. Walking under those conditions is an unavoidable burden that consumes productive capability.</div></div>
+    </div>
+    <div style="font-size:13px;color:var(--ink2);margin-bottom:10px;">올바른 순서를 선택하세요:</div>
+    <div class="order-opts">
+      <button class="oopt" data-oq="o30_1" data-v="1" onclick="op(this)">(C)-(A)-(B)</button>
+      <button class="oopt" data-oq="o30_1" data-v="2" onclick="op(this)">(A)-(C)-(B)</button>
+      <button class="oopt" data-oq="o30_1" data-v="3" onclick="op(this)">(C)-(B)-(A)</button>
+      <button class="oopt" data-oq="o30_1" data-v="4" onclick="op(this)">(B)-(C)-(A)</button>
+      <button class="oopt" data-oq="o30_1" data-v="5" onclick="op(this)">(A)-(B)-(C)</button>
+    </div>
+  </div>
+
+  <div style="font-size:13px;font-weight:600;color:var(--blue);margin:16px 0 8px;letter-spacing:.05em;">▶ 빈칸 추론</div>
+  <div class="blank-q">
+    <div class="blank-passage">The principal transportation mode in the developing world is still walking because of limited resources. People expend energy they can hardly spare, making walking an unavoidable burden. In North America and Europe, however, the attitude is the opposite: walking is healthy and natural. Ironically, treadmills simulate walking that could be <span class="blank-slot">&nbsp;&nbsp;?&nbsp;&nbsp;</span> on the street with a transport purpose.</div>
+    <div class="blank-choices">
+      <div class="bchoice" data-bq="b30_1" data-v="1" onclick="bp(this)"><span class="bnum">①</span> avoided</div>
+      <div class="bchoice" data-bq="b30_1" data-v="2" onclick="bp(this)"><span class="bnum">②</span> otherwise accomplished</div>
+      <div class="bchoice" data-bq="b30_1" data-v="3" onclick="bp(this)"><span class="bnum">③</span> permanently replaced</div>
+      <div class="bchoice" data-bq="b30_1" data-v="4" onclick="bp(this)"><span class="bnum">④</span> endlessly repeated</div>
+      <div class="bchoice" data-bq="b30_1" data-v="5" onclick="bp(this)"><span class="bnum">⑤</span> safely ignored</div>
+    </div>
+  </div>
+  <div class="ac" id="ac-30"></div>
+</div>
+
+<!-- ══════════ 31번 ══════════ -->
+<div class="section" id="tab-s31">
+  <div class="sec-score-bar">
+    <div><div class="title">31번 — 아이 놀이 공간 단순화의 중요성</div><div class="sub">너무 많은 장난감은 아이의 창의성을 방해하므로 공간을 단순화해야 한다</div></div>
+    <div class="brow"><button class="btn btn-outline" onclick="scoreSection('31')">채점</button><button class="btn btn-gold" onclick="sw('s32')">다음 →</button></div>
+  </div>
+
+  <div style="font-size:13px;font-weight:600;color:var(--blue);margin-bottom:8px;letter-spacing:.05em;">▶ 어휘 선택</div>
+  <div class="passage">
+    Just like how other rooms can <span class="vs" id="qv31_1"><sup>1)</sup><span class="opts"><button class="vbtn" data-q="v31_1" data-v="generate" onclick="vp(this)">generate</button><span class="vdiv">/</span><button class="vbtn" data-q="v31_1" data-v="prevent" onclick="vp(this)">prevent</button></span></span> worry when filled with too much stuff, the same is true for kids. If the play space <span class="vs" id="qv31_2"><sup>2)</sup><span class="opts"><button class="vbtn" data-q="v31_2" data-v="stores" onclick="vp(this)">stores</button><span class="vdiv">/</span><button class="vbtn" data-q="v31_2" data-v="discards" onclick="vp(this)">discards</button></span></span> every single toy since birth, they can feel <span class="vs" id="qv31_3"><sup>3)</sup><span class="opts"><button class="vbtn" data-q="v31_3" data-v="calm" onclick="vp(this)">calm</button><span class="vdiv">/</span><button class="vbtn" data-q="v31_3" data-v="overloaded" onclick="vp(this)">overloaded</button></span></span> by so much stuff. Revision helps everyone see what they have and use what they <span class="vs" id="qv31_4"><sup>4)</sup><span class="opts"><button class="vbtn" data-q="v31_4" data-v="lack" onclick="vp(this)">lack</button><span class="vdiv">/</span><button class="vbtn" data-q="v31_4" data-v="possess" onclick="vp(this)">possess</button></span></span>. <span class="vs" id="qv31_5"><sup>5)</sup><span class="opts"><button class="vbtn" data-q="v31_5" data-v="Complicating" onclick="vp(this)">Complicating</button><span class="vdiv">/</span><button class="vbtn" data-q="v31_5" data-v="Simplifying" onclick="vp(this)">Simplifying</button></span></span> a play space is so important. You want your kids to feel inspired and imaginative — not overcome with <span class="vs" id="qv31_6"><sup>6)</sup><span class="opts"><button class="vbtn" data-q="v31_6" data-v="decision" onclick="vp(this)">decision</button><span class="vdiv">/</span><button class="vbtn" data-q="v31_6" data-v="hesitation" onclick="vp(this)">hesitation</button></span></span>.
+  </div>
+
+  <div style="font-size:13px;font-weight:600;color:var(--blue);margin:16px 0 8px;letter-spacing:.05em;">▶ 어법 선택</div>
+  <div class="gq"><div class="qlabel">31번 어법 ①</div><div class="qtext">Just like how other rooms in your home can generate worry when <em>filled</em> with too much stuff, the same is true for kids.</div><div class="gopts"><button class="gopt" data-gq="g31_1" data-v="O" onclick="gp(this)">O — 올바르다</button><button class="gopt" data-gq="g31_1" data-v="X" onclick="gp(this)">X — 틀리다</button></div><div class="qexp" id="eg31_1"><span class="ec">정답: O</span> — when filled = when (they are) filled. 접속사 + 수동 과거분사 분사구문. 어법상 올바름.</div></div>
+  <div class="gq"><div class="qlabel">31번 어법 ②</div><div class="qtext">Revision helps everyone see what they have and use <em>what they possess</em>.</div><div class="gopts"><button class="gopt" data-gq="g31_2" data-v="O" onclick="gp(this)">O — 올바르다</button><button class="gopt" data-gq="g31_2" data-v="X" onclick="gp(this)">X — 틀리다</button></div><div class="qexp" id="eg31_2"><span class="ec">정답: O</span> — what은 선행사 포함 관계대명사(= the thing that). 어법상 올바름.</div></div>
+
+  <div style="font-size:13px;font-weight:600;color:var(--blue);margin:16px 0 8px;letter-spacing:.05em;">▶ 빈칸 추론</div>
+  <div class="blank-q">
+    <div class="blank-passage">Just like how rooms filled with too much stuff can cause anxiety, the same is true for kids' play spaces. When there's too much to see and too much input, kids have a hard time <span class="blank-slot">&nbsp;&nbsp;?&nbsp;&nbsp;</span>. You want your kids to feel inspired and imaginative in the room — not overcome with hesitation.</div>
+    <div class="blank-choices">
+      <div class="bchoice" data-bq="b31_1" data-v="1" onclick="bp(this)"><span class="bnum">①</span> making a choice</div>
+      <div class="bchoice" data-bq="b31_1" data-v="2" onclick="bp(this)"><span class="bnum">②</span> finding new toys</div>
+      <div class="bchoice" data-bq="b31_1" data-v="3" onclick="bp(this)"><span class="bnum">③</span> expressing their emotions clearly</div>
+      <div class="bchoice" data-bq="b31_1" data-v="4" onclick="bp(this)"><span class="bnum">④</span> organizing their room independently</div>
+      <div class="bchoice" data-bq="b31_1" data-v="5" onclick="bp(this)"><span class="bnum">⑤</span> spending time with their parents</div>
+    </div>
+  </div>
+
+  <div style="font-size:13px;font-weight:600;color:var(--blue);margin:16px 0 8px;letter-spacing:.05em;">▶ 요약문 빈칸 (a)(b)</div>
+  <div class="summary-q">
+    <div class="summary-text">A play space filled with too many toys can <span class="sumslot">&nbsp;(a)&nbsp;</span> children rather than inspire creativity, so <span class="sumslot">&nbsp;(b)&nbsp;</span> the space by removing excess toys helps children focus and feel more imaginative.</div>
+    <div style="font-size:12px;color:var(--ink3);margin-bottom:10px;">아래 보기 중 (a)와 (b)에 알맞은 것을 각각 선택하세요.</div>
+    <div style="font-size:13px;font-weight:600;color:var(--ink2);margin-bottom:6px;">(a) 선택:</div>
+    <div class="sum-choices" style="margin-bottom:14px;">
+      <div class="schoice" data-sq="sa31_1" data-v="1" onclick="sp(this)"><span class="sn">①</span> overwhelm</div>
+      <div class="schoice" data-sq="sa31_1" data-v="2" onclick="sp(this)"><span class="sn">②</span> motivate</div>
+      <div class="schoice" data-sq="sa31_1" data-v="3" onclick="sp(this)"><span class="sn">③</span> entertain</div>
+      <div class="schoice" data-sq="sa31_1" data-v="4" onclick="sp(this)"><span class="sn">④</span> educate</div>
+      <div class="schoice" data-sq="sa31_1" data-v="5" onclick="sp(this)"><span class="sn">⑤</span> calm</div>
+    </div>
+    <div style="font-size:13px;font-weight:600;color:var(--ink2);margin-bottom:6px;">(b) 선택:</div>
+    <div class="sum-choices">
+      <div class="schoice" data-sq="sb31_1" data-v="1" onclick="sp(this)"><span class="sn">①</span> decorating</div>
+      <div class="schoice" data-sq="sb31_1" data-v="2" onclick="sp(this)"><span class="sn">②</span> streamlining</div>
+      <div class="schoice" data-sq="sb31_1" data-v="3" onclick="sp(this)"><span class="sn">③</span> expanding</div>
+      <div class="schoice" data-sq="sb31_1" data-v="4" onclick="sp(this)"><span class="sn">④</span> monitoring</div>
+      <div class="schoice" data-sq="sb31_1" data-v="5" onclick="sp(this)"><span class="sn">⑤</span> filling</div>
+    </div>
+  </div>
+  <div class="ac" id="ac-31"></div>
+</div>
+
+<!-- ══════════ 32번 ══════════ -->
+<div class="section" id="tab-s32">
+  <div class="sec-score-bar">
+    <div><div class="title">32번 — 친숙함과 진정한 숙달의 차이</div><div class="sub">학생들은 인식을 지식으로 착각하는 인지적 편향을 가지고 있다</div></div>
+    <div class="brow"><button class="btn btn-outline" onclick="scoreSection('32')">채점</button><button class="btn btn-gold" onclick="sw('s33')">다음 →</button></div>
+  </div>
+
+  <div style="font-size:13px;font-weight:600;color:var(--blue);margin-bottom:8px;letter-spacing:.05em;">▶ 어휘 선택</div>
+  <div class="passage">
+    Students often mistake <span class="vs" id="qv32_1"><sup>1)</sup><span class="opts"><button class="vbtn" data-q="v32_1" data-v="closeness" onclick="vp(this)">closeness</button><span class="vdiv">/</span><button class="vbtn" data-q="v32_1" data-v="strangeness" onclick="vp(this)">strangeness</button></span></span> with true mastery, creating a dangerous "illusion of <span class="vs" id="qv32_2"><sup>2)</sup><span class="opts"><button class="vbtn" data-q="v32_2" data-v="capability" onclick="vp(this)">capability</button><span class="vdiv">/</span><button class="vbtn" data-q="v32_2" data-v="inability" onclick="vp(this)">inability</button></span></span>." This cognitive <span class="vs" id="qv32_3"><sup>3)</sup><span class="opts"><button class="vbtn" data-q="v32_3" data-v="fairness" onclick="vp(this)">fairness</button><span class="vdiv">/</span><button class="vbtn" data-q="v32_3" data-v="prejudice" onclick="vp(this)">prejudice</button></span></span>, strengthened by <span class="vs" id="qv32_4"><sup>4)</sup><span class="opts"><button class="vbtn" data-q="v32_4" data-v="active" onclick="vp(this)">active</button><span class="vdiv">/</span><button class="vbtn" data-q="v32_4" data-v="passive" onclick="vp(this)">passive</button></span></span> study methods, leads learners to <span class="vs" id="qv32_5"><sup>5)</sup><span class="opts"><button class="vbtn" data-q="v32_5" data-v="overrate" onclick="vp(this)">overrate</button><span class="vdiv">/</span><button class="vbtn" data-q="v32_5" data-v="underestimate" onclick="vp(this)">underestimate</button></span></span> their understanding. Ultimately, assuming the teacher mindset transforms surface familiarity into real mastery, exposing and filling gaps in knowledge and ensuring solid, <span class="vs" id="qv32_6"><sup>6)</sup><span class="opts"><button class="vbtn" data-q="v32_6" data-v="dependable" onclick="vp(this)">dependable</button><span class="vdiv">/</span><button class="vbtn" data-q="v32_6" data-v="untrustworthy" onclick="vp(this)">untrustworthy</button></span></span> understanding.
+  </div>
+
+  <div style="font-size:13px;font-weight:600;color:var(--blue);margin:16px 0 8px;letter-spacing:.05em;">▶ 어법 선택</div>
+  <div class="gq"><div class="qlabel">32번 어법 ①</div><div class="qtext">Students often mistake closeness with true mastery, <em>creating</em> a dangerous "illusion of capability."</div><div class="gopts"><button class="gopt" data-gq="g32_1" data-v="O" onclick="gp(this)">O — 올바르다</button><button class="gopt" data-gq="g32_1" data-v="X" onclick="gp(this)">X — 틀리다</button></div><div class="qexp" id="eg32_1"><span class="ec">정답: O</span> — creating은 현재분사 분사구문으로 결과를 나타냄. 어법상 올바름.</div></div>
+  <div class="gq"><div class="qlabel">32번 어법 ②</div><div class="qtext">Ultimately, <em>assuming</em> the teacher mindset transforms surface familiarity into real mastery.</div><div class="gopts"><button class="gopt" data-gq="g32_2" data-v="O" onclick="gp(this)">O — 올바르다</button><button class="gopt" data-gq="g32_2" data-v="X" onclick="gp(this)">X — 틀리다</button></div><div class="qexp" id="eg32_2"><span class="ec">정답: O</span> — assuming은 동명사 주어. 단수 취급하여 transforms. 어법상 올바름.</div></div>
+
+  <div style="font-size:13px;font-weight:600;color:var(--blue);margin:16px 0 8px;letter-spacing:.05em;">▶ 빈칸 추론</div>
+  <div class="blank-q">
+    <div class="blank-passage">Students often mistake familiarity with true mastery. Recognizing information feels like knowledge, but they struggle when asked to recall or apply it independently. Teaching materials actively counters this illusion by requiring deep processing and exposing gaps in knowledge. Ultimately, adopting the <span class="blank-slot">&nbsp;&nbsp;?&nbsp;&nbsp;</span> transforms surface familiarity into real mastery.</div>
+    <div class="blank-choices">
+      <div class="bchoice" data-bq="b32_1" data-v="1" onclick="bp(this)"><span class="bnum">①</span> student mindset</div>
+      <div class="bchoice" data-bq="b32_1" data-v="2" onclick="bp(this)"><span class="bnum">②</span> passive study habit</div>
+      <div class="bchoice" data-bq="b32_1" data-v="3" onclick="bp(this)"><span class="bnum">③</span> teacher mindset</div>
+      <div class="bchoice" data-bq="b32_1" data-v="4" onclick="bp(this)"><span class="bnum">④</span> memorization strategy</div>
+      <div class="bchoice" data-bq="b32_1" data-v="5" onclick="bp(this)"><span class="bnum">⑤</span> competitive attitude</div>
+    </div>
+  </div>
+
+  <div style="font-size:13px;font-weight:600;color:var(--blue);margin:16px 0 8px;letter-spacing:.05em;">▶ 문장 삽입</div>
+  <div class="insert-q">
+    <div class="insert-sentence">Teaching materials (even informally or imaginatively) actively counters this illusion by requiring deep processing, active recall, and structured organization.</div>
+    <div class="insert-passage">
+      Students often mistake familiarity with true mastery. <span class="ins-marker" data-iq="i32_1" data-v="1" onclick="ip(this)">1</span> Recognizing information feels like knowledge, but they struggle when asked to recall or apply it independently. <span class="ins-marker" data-iq="i32_1" data-v="2" onclick="ip(this)">2</span> This cognitive bias, strengthened by passive study methods, leads learners to overrate their understanding. <span class="ins-marker" data-iq="i32_1" data-v="3" onclick="ip(this)">3</span> It introduces powerful methods like teaching imaginary students and utilizing the Feynman Technique. <span class="ins-marker" data-iq="i32_1" data-v="4" onclick="ip(this)">4</span> Ultimately, assuming the teacher mindset transforms surface familiarity into real mastery, ensuring solid understanding. <span class="ins-marker" data-iq="i32_1" data-v="5" onclick="ip(this)">5</span>
+    </div>
+  </div>
+  <div class="ac" id="ac-32"></div>
+</div>
+
+<!-- ══════════ 33번 ══════════ -->
+<div class="section" id="tab-s33">
+  <div class="sec-score-bar">
+    <div><div class="title">33번 — 수메르의 숫자 해방 개념</div><div class="sub">수메르인들이 숫자를 사물로부터 분리시켜 독립적 개념으로 발전시켰다</div></div>
+    <div class="brow"><button class="btn btn-outline" onclick="scoreSection('33')">채점</button><button class="btn btn-gold" onclick="sw('s34')">다음 →</button></div>
+  </div>
+
+  <div style="font-size:13px;font-weight:600;color:var(--blue);margin-bottom:8px;letter-spacing:.05em;">▶ 어휘 선택</div>
+  <div class="passage">
+    From around 3000 BC, Sumerian officials would mark lists of goods on clay tablets. Their first great intellectual leap came from <span class="vs" id="qv33_1"><sup>1)</sup><span class="opts"><button class="vbtn" data-q="v33_1" data-v="separate" onclick="vp(this)">separate</button><span class="vdiv">/</span><button class="vbtn" data-q="v33_1" data-v="combine" onclick="vp(this)">combine</button></span></span> the number from the object. They would <span class="vs" id="qv33_2"><sup>2)</sup><span class="opts"><button class="vbtn" data-q="v33_2" data-v="obscure" onclick="vp(this)">obscure</button><span class="vdiv">/</span><button class="vbtn" data-q="v33_2" data-v="symbolize" onclick="vp(this)">symbolize</button></span></span> five fish with a numeral alongside a symbol for the fish. They realized they could keep the same numeral and <span class="vs" id="qv33_3"><sup>3)</sup><span class="opts"><button class="vbtn" data-q="v33_3" data-v="trade" onclick="vp(this)">trade</button><span class="vdiv">/</span><button class="vbtn" data-q="v33_3" data-v="keep" onclick="vp(this)">keep</button></span></span> the object symbol. The Sumerians had developed the idea of an emancipated number, <span class="vs" id="qv33_4"><sup>4)</sup><span class="opts"><button class="vbtn" data-q="v33_4" data-v="separate from" onclick="vp(this)">separate from</button><span class="vdiv">/</span><button class="vbtn" data-q="v33_4" data-v="dependent on" onclick="vp(this)">dependent on</button></span></span> whatever it is being used to count. It is easy to <span class="vs" id="qv33_5"><sup>5)</sup><span class="opts"><button class="vbtn" data-q="v33_5" data-v="take for granted" onclick="vp(this)">take for granted</button><span class="vdiv">/</span><button class="vbtn" data-q="v33_5" data-v="question" onclick="vp(this)">question</button></span></span> the emancipated number as it is so deeply set into modern thought.
+  </div>
+
+  <div style="font-size:13px;font-weight:600;color:var(--blue);margin:16px 0 8px;letter-spacing:.05em;">▶ 어법 선택</div>
+  <div class="gq"><div class="qlabel">33번 어법 ①</div><div class="qtext">Their first great intellectual leap came from <em>separating</em> the number from the object they were counting.</div><div class="gopts"><button class="gopt" data-gq="g33_1" data-v="O" onclick="gp(this)">O — 올바르다</button><button class="gopt" data-gq="g33_1" data-v="X" onclick="gp(this)">X — 틀리다</button></div><div class="qexp" id="eg33_1"><span class="ec">정답: O</span> — come from + 동명사(separating). 어법상 올바름.</div></div>
+  <div class="gq"><div class="qlabel">33번 어법 ②</div><div class="qtext">It is easy to take the emancipated number for granted as it is so deeply <em>set</em> into modern thought.</div><div class="gopts"><button class="gopt" data-gq="g33_2" data-v="O" onclick="gp(this)">O — 올바르다</button><button class="gopt" data-gq="g33_2" data-v="X" onclick="gp(this)">X — 틀리다</button></div><div class="qexp" id="eg33_2"><span class="ec">정답: O</span> — set = 과거분사(deeply set = 깊이 박혀 있는). 어법상 올바름.</div></div>
+
+  <div style="font-size:13px;font-weight:600;color:var(--blue);margin:16px 0 8px;letter-spacing:.05em;">▶ 글의 순서</div>
+  <div class="order-q">
+    <div class="order-intro">From around 3000 BC, the Sumerian officials would mark their lists of goods on clay tablets. If they wanted to record five fish, they would mark five pictures of a fish.</div>
+    <div class="order-paras">
+      <div class="para-block"><div class="para-label">(A)</div><div class="para-text">The Sumerians had developed the idea of an emancipated number, existing in its own right and separate from whatever it is being used to count. It is easy to take the emancipated number for granted as it is so deeply set into modern thought.</div></div>
+      <div class="para-block"><div class="para-label">(B)</div><div class="para-text">Their first great intellectual leap came from separating the number from the object they were counting. They would symbolize five fish with a numeral for the number five alongside a symbol for the fish.</div></div>
+      <div class="para-block"><div class="para-label">(C)</div><div class="para-text">If they wanted to describe five of something else, they realized they could keep the same numeral and trade the object symbol for a cow, or a jar of oil, or whatever else they were interested in.</div></div>
+    </div>
+    <div style="font-size:13px;color:var(--ink2);margin-bottom:10px;">올바른 순서를 선택하세요:</div>
+    <div class="order-opts">
+      <button class="oopt" data-oq="o33_1" data-v="1" onclick="op(this)">(B)-(C)-(A)</button>
+      <button class="oopt" data-oq="o33_1" data-v="2" onclick="op(this)">(C)-(B)-(A)</button>
+      <button class="oopt" data-oq="o33_1" data-v="3" onclick="op(this)">(A)-(B)-(C)</button>
+      <button class="oopt" data-oq="o33_1" data-v="4" onclick="op(this)">(B)-(A)-(C)</button>
+      <button class="oopt" data-oq="o33_1" data-v="5" onclick="op(this)">(C)-(A)-(B)</button>
+    </div>
+  </div>
+
+  <div style="font-size:13px;font-weight:600;color:var(--blue);margin:16px 0 8px;letter-spacing:.05em;">▶ 빈칸 추론</div>
+  <div class="blank-q">
+    <div class="blank-passage">The Sumerians developed the idea of an emancipated number — a number that exists in its own right and is <span class="blank-slot">&nbsp;&nbsp;?&nbsp;&nbsp;</span> whatever it is being used to count. To the earliest civilizations, this concept was intellectually new and extremely powerful.</div>
+    <div class="blank-choices">
+      <div class="bchoice" data-bq="b33_1" data-v="1" onclick="bp(this)"><span class="bnum">①</span> dependent on</div>
+      <div class="bchoice" data-bq="b33_1" data-v="2" onclick="bp(this)"><span class="bnum">②</span> separate from</div>
+      <div class="bchoice" data-bq="b33_1" data-v="3" onclick="bp(this)"><span class="bnum">③</span> identical to</div>
+      <div class="bchoice" data-bq="b33_1" data-v="4" onclick="bp(this)"><span class="bnum">④</span> connected with</div>
+      <div class="bchoice" data-bq="b33_1" data-v="5" onclick="bp(this)"><span class="bnum">⑤</span> influenced by</div>
+    </div>
+  </div>
+  <div class="ac" id="ac-33"></div>
+</div>
+
+<!-- ══════════ 34번 ══════════ -->
+<div class="section" id="tab-s34">
+  <div class="sec-score-bar">
+    <div><div class="title">34번 — 내집단 모방은 효율이 아닌 규범 습득이 목적</div><div class="sub">싫어하는 내집단 구성원도 모방하는 과잉 모방은 사회적 규범 학습 때문</div></div>
+    <div class="brow"><button class="btn btn-outline" onclick="scoreSection('34')">채점</button><button class="btn btn-gold" onclick="sw('s35')">다음 →</button></div>
+  </div>
+
+  <div style="font-size:13px;font-weight:600;color:var(--blue);margin-bottom:8px;letter-spacing:.05em;">▶ 어휘 선택</div>
+  <div class="passage">
+    The emphasis on learning from the ingroup takes little <span class="vs" id="qv34_1"><sup>1)</sup><span class="opts"><button class="vbtn" data-q="v34_1" data-v="account of" onclick="vp(this)">account of</button><span class="vdiv">/</span><button class="vbtn" data-q="v34_1" data-v="interest in" onclick="vp(this)">interest in</button></span></span> individuals. Amazingly, while we may <span class="vs" id="qv34_2"><sup>2)</sup><span class="opts"><button class="vbtn" data-q="v34_2" data-v="adore" onclick="vp(this)">adore</button><span class="vdiv">/</span><button class="vbtn" data-q="v34_2" data-v="detest" onclick="vp(this)">detest</button></span></span> some people in our ingroup, we still copy them. Ingroups and outgroups were <span class="vs" id="qv34_3"><sup>3)</sup><span class="opts"><button class="vbtn" data-q="v34_3" data-v="discerned" onclick="vp(this)">discerned</button><span class="vdiv">/</span><button class="vbtn" data-q="v34_3" data-v="confused" onclick="vp(this)">confused</button></span></span> in a <span class="vs" id="qv34_4"><sup>4)</sup><span class="opts"><button class="vbtn" data-q="v34_4" data-v="minimal" onclick="vp(this)">minimal</button><span class="vdiv">/</span><button class="vbtn" data-q="v34_4" data-v="maximal" onclick="vp(this)">maximal</button></span></span> way. Their dislike did not affect their <span class="vs" id="qv34_5"><sup>5)</sup><span class="opts"><button class="vbtn" data-q="v34_5" data-v="inclination" onclick="vp(this)">inclination</button><span class="vdiv">/</span><button class="vbtn" data-q="v34_5" data-v="aversion" onclick="vp(this)">aversion</button></span></span> to copy ingroup behavior more <span class="vs" id="qv34_6"><sup>6)</sup><span class="opts"><button class="vbtn" data-q="v34_6" data-v="attentively" onclick="vp(this)">attentively</button><span class="vdiv">/</span><button class="vbtn" data-q="v34_6" data-v="carelessly" onclick="vp(this)">carelessly</button></span></span>. We want to learn how to do it in the <span class="vs" id="qv34_7"><sup>7)</sup><span class="opts"><button class="vbtn" data-q="v34_7" data-v="appropriate" onclick="vp(this)">appropriate</button><span class="vdiv">/</span><button class="vbtn" data-q="v34_7" data-v="unsuitable" onclick="vp(this)">unsuitable</button></span></span> way — complying with the rules and conventions of the ingroup.
+  </div>
+
+  <div style="font-size:13px;font-weight:600;color:var(--blue);margin:16px 0 8px;letter-spacing:.05em;">▶ 어법 선택</div>
+  <div class="gq"><div class="qlabel">34번 어법 ①</div><div class="qtext">Ingroups and outgroups were discerned in a minimal way, using simple <em>color coding of wristbands</em>.</div><div class="gopts"><button class="gopt" data-gq="g34_1" data-v="O" onclick="gp(this)">O — 올바르다</button><button class="gopt" data-gq="g34_1" data-v="X" onclick="gp(this)">X — 틀리다</button></div><div class="qexp" id="eg34_1"><span class="ec">정답: O</span> — using은 현재분사 분사구문(방법). color coding은 명사로 of 뒤에 정상적으로 위치. 어법상 올바름.</div></div>
+  <div class="gq"><div class="qlabel">34번 어법 ②</div><div class="qtext">This overimitation reveals that we are not copying <em>in order to learn</em> how to open a box most efficiently.</div><div class="gopts"><button class="gopt" data-gq="g34_2" data-v="O" onclick="gp(this)">O — 올바르다</button><button class="gopt" data-gq="g34_2" data-v="X" onclick="gp(this)">X — 틀리다</button></div><div class="qexp" id="eg34_2"><span class="ec">정답: O</span> — in order to + V원형(목적). 어법상 올바름.</div></div>
+
+  <div style="font-size:13px;font-weight:600;color:var(--blue);margin:16px 0 8px;letter-spacing:.05em;">▶ 빈칸 추론</div>
+  <div class="blank-q">
+    <div class="blank-passage">Children copy ingroup members more attentively than outgroup members, even when they dislike those ingroup members. This overimitation reveals that we are not copying in order to <span class="blank-slot">&nbsp;&nbsp;?&nbsp;&nbsp;</span>. We want to learn how to do it in the appropriate way — complying with the rules and conventions of the ingroup.</div>
+    <div class="blank-choices">
+      <div class="bchoice" data-bq="b34_1" data-v="1" onclick="bp(this)"><span class="bnum">①</span> learn how to open a box most efficiently</div>
+      <div class="bchoice" data-bq="b34_1" data-v="2" onclick="bp(this)"><span class="bnum">②</span> improve our social relationships</div>
+      <div class="bchoice" data-bq="b34_1" data-v="3" onclick="bp(this)"><span class="bnum">③</span> demonstrate our independence</div>
+      <div class="bchoice" data-bq="b34_1" data-v="4" onclick="bp(this)"><span class="bnum">④</span> challenge the authority of group leaders</div>
+      <div class="bchoice" data-bq="b34_1" data-v="5" onclick="bp(this)"><span class="bnum">⑤</span> be recognized as the best performer</div>
+    </div>
+  </div>
+
+  <div style="font-size:13px;font-weight:600;color:var(--blue);margin:16px 0 8px;letter-spacing:.05em;">▶ 문장 삽입</div>
+  <div class="insert-q">
+    <div class="insert-sentence">Still, their dislike did not affect their inclination to copy ingroup behavior more attentively than outgroup behavior.</div>
+    <div class="insert-passage">
+      The emphasis on learning from the ingroup takes little account of individuals. <span class="ins-marker" data-iq="i34_1" data-v="1" onclick="ip(this)">1</span> Amazingly, while we may detest some of the people in our ingroup, we still copy them. <span class="ins-marker" data-iq="i34_1" data-v="2" onclick="ip(this)">2</span> The children did not simply like all members of their ingroup; they disliked those who behaved in an antisocial fashion. <span class="ins-marker" data-iq="i34_1" data-v="3" onclick="ip(this)">3</span> This overimitation reveals that we are not copying in order to learn how to open a box most efficiently. <span class="ins-marker" data-iq="i34_1" data-v="4" onclick="ip(this)">4</span> We want to learn how to do it in the appropriate way — complying with the rules and conventions of the ingroup. <span class="ins-marker" data-iq="i34_1" data-v="5" onclick="ip(this)">5</span>
+    </div>
+  </div>
+  <div class="ac" id="ac-34"></div>
+</div>
+
+<!-- ══════════ 35번 ══════════ -->
+<div class="section" id="tab-s35">
+  <div class="sec-score-bar">
+    <div><div class="title">35번 — 체중 설정점 이론</div><div class="sub">지방세포 수는 어린 시절에 결정되며 설정점이 식욕을 조절한다</div></div>
+    <div class="brow"><button class="btn btn-outline" onclick="scoreSection('35')">채점</button><button class="btn btn-gold" onclick="sw('s36')">다음 →</button></div>
+  </div>
+
+  <div style="font-size:13px;font-weight:600;color:var(--blue);margin-bottom:8px;letter-spacing:.05em;">▶ 어휘 선택</div>
+  <div class="passage">
+    The "set point theory" <span class="vs" id="qv35_1"><sup>1)</sup><span class="opts"><button class="vbtn" data-q="v35_1" data-v="notion" onclick="vp(this)">notion</button><span class="vdiv">/</span><button class="vbtn" data-q="v35_1" data-v="concrete reality" onclick="vp(this)">concrete reality</button></span></span> is that your body has a stable quantity of fat cells by the time you are an adult. The more weight you carried in your <span class="vs" id="qv35_2"><sup>2)</sup><span class="opts"><button class="vbtn" data-q="v35_2" data-v="childhood" onclick="vp(this)">childhood</button><span class="vdiv">/</span><button class="vbtn" data-q="v35_2" data-v="adulthood" onclick="vp(this)">adulthood</button></span></span>, the more fat cells you will have as an adult. The set point is the <span class="vs" id="qv35_3"><sup>3)</sup><span class="opts"><button class="vbtn" data-q="v35_3" data-v="trigger" onclick="vp(this)">trigger</button><span class="vdiv">/</span><button class="vbtn" data-q="v35_3" data-v="barrier" onclick="vp(this)">barrier</button></span></span> in these cells that sends a message to your brain. The <span class="vs" id="qv35_4"><sup>4)</sup><span class="opts"><button class="vbtn" data-q="v35_4" data-v="power" onclick="vp(this)">power</button><span class="vdiv">/</span><button class="vbtn" data-q="v35_4" data-v="weakness" onclick="vp(this)">weakness</button></span></span> of the message is affected by the number of cells. Thus a person with lots of fat cells and a high set point will battle with a strong <span class="vs" id="qv35_5"><sup>5)</sup><span class="opts"><button class="vbtn" data-q="v35_5" data-v="craving" onclick="vp(this)">craving</button><span class="vdiv">/</span><button class="vbtn" data-q="v35_5" data-v="apathy" onclick="vp(this)">apathy</button></span></span> for food when dieting.
+  </div>
+
+  <div style="font-size:13px;font-weight:600;color:var(--blue);margin:16px 0 8px;letter-spacing:.05em;">▶ 어법 선택</div>
+  <div class="gq"><div class="qlabel">35번 어법 ①</div><div class="qtext">The more weight you carried in your childhood and your teenage years, <em>the more fat cells you will have</em> as an adult.</div><div class="gopts"><button class="gopt" data-gq="g35_1" data-v="O" onclick="gp(this)">O — 올바르다</button><button class="gopt" data-gq="g35_1" data-v="X" onclick="gp(this)">X — 틀리다</button></div><div class="qexp" id="eg35_1"><span class="ec">정답: O</span> — the 비교급, the 비교급 구문. 어법상 올바름.</div></div>
+  <div class="gq"><div class="qlabel">35번 어법 ②</div><div class="qtext">Thus a person with lots of fat cells and a high set point will battle with a strong craving for food <em>when dieting</em>.</div><div class="gopts"><button class="gopt" data-gq="g35_2" data-v="O" onclick="gp(this)">O — 올바르다</button><button class="gopt" data-gq="g35_2" data-v="X" onclick="gp(this)">X — 틀리다</button></div><div class="qexp" id="eg35_2"><span class="ec">정답: O</span> — when dieting = when (they are) dieting. 접속사 + 분사구문. 어법상 올바름.</div></div>
+
+  <div style="font-size:13px;font-weight:600;color:var(--blue);margin:16px 0 8px;letter-spacing:.05em;">▶ 빈칸 추론</div>
+  <div class="blank-q">
+    <div class="blank-passage">The "set point theory" is that your body has a stable quantity of fat cells. These cells become "fuller" or "thinner" as you gain and lose weight. The set point sends a message to your brain saying that your fat cells are getting too thin and that you <span class="blank-slot">&nbsp;&nbsp;?&nbsp;&nbsp;</span>.</div>
+    <div class="blank-choices">
+      <div class="bchoice" data-bq="b35_1" data-v="1" onclick="bp(this)"><span class="bnum">①</span> must sleep more</div>
+      <div class="bchoice" data-bq="b35_1" data-v="2" onclick="bp(this)"><span class="bnum">②</span> must eat more</div>
+      <div class="bchoice" data-bq="b35_1" data-v="3" onclick="bp(this)"><span class="bnum">③</span> should exercise less</div>
+      <div class="bchoice" data-bq="b35_1" data-v="4" onclick="bp(this)"><span class="bnum">④</span> need to drink more water</div>
+      <div class="bchoice" data-bq="b35_1" data-v="5" onclick="bp(this)"><span class="bnum">⑤</span> should reduce stress</div>
+    </div>
+  </div>
+
+  <div style="font-size:13px;font-weight:600;color:var(--blue);margin:16px 0 8px;letter-spacing:.05em;">▶ 요약문 빈칸 (a)(b)</div>
+  <div class="summary-q">
+    <div class="summary-text">According to the set point theory, the number of fat cells is largely determined during <span class="sumslot">&nbsp;(a)&nbsp;</span>, and when dieting reduces fat cells below the set point, the body sends a strong signal to <span class="sumslot">&nbsp;(b)&nbsp;</span> food intake.</div>
+    <div style="font-size:13px;font-weight:600;color:var(--ink2);margin-bottom:6px;">(a) 선택:</div>
+    <div class="sum-choices" style="margin-bottom:14px;">
+      <div class="schoice" data-sq="sa35_1" data-v="1" onclick="sp(this)"><span class="sn">①</span> childhood</div>
+      <div class="schoice" data-sq="sa35_1" data-v="2" onclick="sp(this)"><span class="sn">②</span> adulthood</div>
+      <div class="schoice" data-sq="sa35_1" data-v="3" onclick="sp(this)"><span class="sn">③</span> old age</div>
+      <div class="schoice" data-sq="sa35_1" data-v="4" onclick="sp(this)"><span class="sn">④</span> pregnancy</div>
+      <div class="schoice" data-sq="sa35_1" data-v="5" onclick="sp(this)"><span class="sn">⑤</span> recovery</div>
+    </div>
+    <div style="font-size:13px;font-weight:600;color:var(--ink2);margin-bottom:6px;">(b) 선택:</div>
+    <div class="sum-choices">
+      <div class="schoice" data-sq="sb35_1" data-v="1" onclick="sp(this)"><span class="sn">①</span> reduce</div>
+      <div class="schoice" data-sq="sb35_1" data-v="2" onclick="sp(this)"><span class="sn">②</span> increase</div>
+      <div class="schoice" data-sq="sb35_1" data-v="3" onclick="sp(this)"><span class="sn">③</span> balance</div>
+      <div class="schoice" data-sq="sb35_1" data-v="4" onclick="sp(this)"><span class="sn">④</span> track</div>
+      <div class="schoice" data-sq="sb35_1" data-v="5" onclick="sp(this)"><span class="sn">⑤</span> avoid</div>
+    </div>
+  </div>
+  <div class="ac" id="ac-35"></div>
+</div>
+
+<!-- ══════════ 36번 ══════════ -->
+<div class="section" id="tab-s36">
+  <div class="sec-score-bar">
+    <div><div class="title">36번 — "less is more"의 사상이 일상 습관을 형성하다</div><div class="sub">단순함을 강조하는 사고방식이 라디오 수신기에서 스마트폰까지 변화를 이끌었다</div></div>
+    <div class="brow"><button class="btn btn-outline" onclick="scoreSection('36')">채점</button><button class="btn btn-gold" onclick="sw('s37')">다음 →</button></div>
+  </div>
+
+  <div style="font-size:13px;font-weight:600;color:var(--blue);margin-bottom:8px;letter-spacing:.05em;">▶ 어휘 선택</div>
+  <div class="passage">
+    <span class="vs" id="qv36_1"><sup>1)</sup><span class="opts"><button class="vbtn" data-q="v36_1" data-v="Originally" onclick="vp(this)">Originally</button><span class="vdiv">/</span><button class="vbtn" data-q="v36_1" data-v="Finally" onclick="vp(this)">Finally</button></span></span> the catchphrase "less is more" had a simple meaning. It <span class="vs" id="qv36_2"><sup>2)</sup><span class="opts"><button class="vbtn" data-q="v36_2" data-v="implies" onclick="vp(this)">implies</button><span class="vdiv">/</span><button class="vbtn" data-q="v36_2" data-v="denies" onclick="vp(this)">denies</button></span></span> that everything simple is better than the <span class="vs" id="qv36_3"><sup>3)</sup><span class="opts"><button class="vbtn" data-q="v36_3" data-v="complicated" onclick="vp(this)">complicated</button><span class="vdiv">/</span><button class="vbtn" data-q="v36_3" data-v="simple" onclick="vp(this)">simple</button></span></span> and tangled. The way of thinking behind these words slowly <span class="vs" id="qv36_4"><sup>4)</sup><span class="opts"><button class="vbtn" data-q="v36_4" data-v="eliminates" onclick="vp(this)">eliminates</button><span class="vdiv">/</span><button class="vbtn" data-q="v36_4" data-v="forms" onclick="vp(this)">forms</button></span></span> certain habits from our daily life. Over time, many buttons became viewed as "extra" and were removed, and with each <span class="vs" id="qv36_5"><sup>5)</sup><span class="opts"><button class="vbtn" data-q="v36_5" data-v="reduction" onclick="vp(this)">reduction</button><span class="vdiv">/</span><button class="vbtn" data-q="v36_5" data-v="expansion" onclick="vp(this)">expansion</button></span></span> these devices <span class="vs" id="qv36_6"><sup>6)</sup><span class="opts"><button class="vbtn" data-q="v36_6" data-v="finally" onclick="vp(this)">finally</button><span class="vdiv">/</span><button class="vbtn" data-q="v36_6" data-v="initially" onclick="vp(this)">initially</button></span></span> developed into the phones in our pockets.
+  </div>
+
+  <div style="font-size:13px;font-weight:600;color:var(--blue);margin:16px 0 8px;letter-spacing:.05em;">▶ 어법 선택</div>
+  <div class="gq"><div class="qlabel">36번 어법 ①</div><div class="qtext">First <em>noted</em> in Robert Browning's poem "Andrea del Sarto," it implies that everything simple is better.</div><div class="gopts"><button class="gopt" data-gq="g36_1" data-v="O" onclick="gp(this)">O — 올바르다</button><button class="gopt" data-gq="g36_1" data-v="X" onclick="gp(this)">X — 틀리다</button></div><div class="qexp" id="eg36_1"><span class="ec">정답: O</span> — First noted는 과거분사 분사구문으로 주절 주어 it과 수동 관계. 어법상 올바름.</div></div>
+  <div class="gq"><div class="qlabel">36번 어법 ②</div><div class="qtext">The scale of the object became smaller, and the functions of the buttons <em>got lost</em> in the three-dot menus and multilayered folders.</div><div class="gopts"><button class="gopt" data-gq="g36_2" data-v="O" onclick="gp(this)">O — 올바르다</button><button class="gopt" data-gq="g36_2" data-v="X" onclick="gp(this)">X — 틀리다</button></div><div class="qexp" id="eg36_2"><span class="ec">정답: O</span> — get lost = 사라지다/잃어버리다. 어법상 올바름.</div></div>
+
+  <div style="font-size:13px;font-weight:600;color:var(--blue);margin:16px 0 8px;letter-spacing:.05em;">▶ 글의 순서</div>
+  <div class="order-q">
+    <div class="order-intro">Originally the catchphrase "less is more" had a simple meaning. First noted in Robert Browning's poem "Andrea del Sarto," it implies that everything simple is better and more beautiful than the complicated and tangled.</div>
+    <div class="order-paras">
+      <div class="para-block"><div class="para-label">(A)</div><div class="para-text">For example, think about the heavy, massive radio receivers that existed in the past. Over time, many of their buttons became viewed as "extra" and were removed.</div></div>
+      <div class="para-block"><div class="para-label">(B)</div><div class="para-text">With each reduction these devices finally developed into the phones in our pockets. The scale of the object became smaller, and the functions of the buttons got lost in the multilayered folders of our phones.</div></div>
+      <div class="para-block"><div class="para-label">(C)</div><div class="para-text">Nowadays this phrase is heard often — maybe even too often. But it's important to realize that the way of thinking behind these words slowly eliminates certain habits from our daily life.</div></div>
+    </div>
+    <div style="font-size:13px;color:var(--ink2);margin-bottom:10px;">올바른 순서를 선택하세요:</div>
+    <div class="order-opts">
+      <button class="oopt" data-oq="o36_1" data-v="1" onclick="op(this)">(C)-(A)-(B)</button>
+      <button class="oopt" data-oq="o36_1" data-v="2" onclick="op(this)">(A)-(C)-(B)</button>
+      <button class="oopt" data-oq="o36_1" data-v="3" onclick="op(this)">(B)-(A)-(C)</button>
+      <button class="oopt" data-oq="o36_1" data-v="4" onclick="op(this)">(A)-(B)-(C)</button>
+      <button class="oopt" data-oq="o36_1" data-v="5" onclick="op(this)">(C)-(B)-(A)</button>
+    </div>
+  </div>
+
+  <div style="font-size:13px;font-weight:600;color:var(--blue);margin:16px 0 8px;letter-spacing:.05em;">▶ 빈칸 추론</div>
+  <div class="blank-q">
+    <div class="blank-passage">The catchphrase "less is more" implies that simple is better than complicated. This way of thinking slowly <span class="blank-slot">&nbsp;&nbsp;?&nbsp;&nbsp;</span> certain habits from our daily life, as seen in the evolution of heavy radio receivers into slim smartphones.</div>
+    <div class="blank-choices">
+      <div class="bchoice" data-bq="b36_1" data-v="1" onclick="bp(this)"><span class="bnum">①</span> creates</div>
+      <div class="bchoice" data-bq="b36_1" data-v="2" onclick="bp(this)"><span class="bnum">②</span> eliminates</div>
+      <div class="bchoice" data-bq="b36_1" data-v="3" onclick="bp(this)"><span class="bnum">③</span> preserves</div>
+      <div class="bchoice" data-bq="b36_1" data-v="4" onclick="bp(this)"><span class="bnum">④</span> complicates</div>
+      <div class="bchoice" data-bq="b36_1" data-v="5" onclick="bp(this)"><span class="bnum">⑤</span> ignores</div>
+    </div>
+  </div>
+  <div class="ac" id="ac-36"></div>
+</div>
+
+<!-- ══════════ 37번 ══════════ -->
+<div class="section" id="tab-s37">
+  <div class="sec-score-bar">
+    <div><div class="title">37번 — 플라스틱 산업이 편리함을 상징하다가 환경 문제로 이어지다</div><div class="sub">플라스틱 업계는 오염 책임을 소비자에게 돌리는 캠페인을 시작했다</div></div>
+    <div class="brow"><button class="btn btn-outline" onclick="scoreSection('37')">채점</button><button class="btn btn-gold" onclick="sw('s38')">다음 →</button></div>
+  </div>
+
+  <div style="font-size:13px;font-weight:600;color:var(--blue);margin-bottom:8px;letter-spacing:.05em;">▶ 어휘 선택</div>
+  <div class="passage">
+    After the invention of plastic, its <span class="vs" id="qv37_1"><sup>1)</sup><span class="opts"><button class="vbtn" data-q="v37_1" data-v="fast" onclick="vp(this)">fast</button><span class="vdiv">/</span><button class="vbtn" data-q="v37_1" data-v="slow" onclick="vp(this)">slow</button></span></span> adoption during World War II, and its explosion into consumer goods, plastic was everywhere. The industry came to <span class="vs" id="qv37_2"><sup>2)</sup><span class="opts"><button class="vbtn" data-q="v37_2" data-v="represent" onclick="vp(this)">represent</button><span class="vdiv">/</span><button class="vbtn" data-q="v37_2" data-v="mask" onclick="vp(this)">mask</button></span></span> the convenience and <span class="vs" id="qv37_3"><sup>3)</sup><span class="opts"><button class="vbtn" data-q="v37_3" data-v="prosperity" onclick="vp(this)">prosperity</button><span class="vdiv">/</span><button class="vbtn" data-q="v37_3" data-v="decline" onclick="vp(this)">decline</button></span></span> of the American dream. Over time, people began to <span class="vs" id="qv37_4"><sup>4)</sup><span class="opts"><button class="vbtn" data-q="v37_4" data-v="perceive" onclick="vp(this)">perceive</button><span class="vdiv">/</span><button class="vbtn" data-q="v37_4" data-v="ignore" onclick="vp(this)">ignore</button></span></span> the environmental impact, and the early seeds of the environmental movement were planted. However, the plastics industry was quick to <span class="vs" id="qv37_5"><sup>5)</sup><span class="opts"><button class="vbtn" data-q="v37_5" data-v="respond to" onclick="vp(this)">respond to</button><span class="vdiv">/</span><button class="vbtn" data-q="v37_5" data-v="ignore" onclick="vp(this)">ignore</button></span></span> these concerns, <span class="vs" id="qv37_6"><sup>6)</sup><span class="opts"><button class="vbtn" data-q="v37_6" data-v="starting" onclick="vp(this)">starting</button><span class="vdiv">/</span><button class="vbtn" data-q="v37_6" data-v="ending" onclick="vp(this)">ending</button></span></span> campaigns that presented recycling as the solution.
+  </div>
+
+  <div style="font-size:13px;font-weight:600;color:var(--blue);margin:16px 0 8px;letter-spacing:.05em;">▶ 어법 선택</div>
+  <div class="gq"><div class="qlabel">37번 어법 ①</div><div class="qtext">…the plastics industry was quick to respond to these concerns, <em>starting</em> campaigns that presented recycling as the solution.</div><div class="gopts"><button class="gopt" data-gq="g37_1" data-v="O" onclick="gp(this)">O — 올바르다</button><button class="gopt" data-gq="g37_1" data-v="X" onclick="gp(this)">X — 틀리다</button></div><div class="qexp" id="eg37_1"><span class="ec">정답: O</span> — starting은 현재분사 분사구문. 주절과 동시 동작. 어법상 올바름.</div></div>
+  <div class="gq"><div class="qlabel">37번 어법 ②</div><div class="qtext">They pushed the idea that pollution was the fault of consumers, not the corporations <em>flooding</em> the market with plastic.</div><div class="gopts"><button class="gopt" data-gq="g37_2" data-v="O" onclick="gp(this)">O — 올바르다</button><button class="gopt" data-gq="g37_2" data-v="X" onclick="gp(this)">X — 틀리다</button></div><div class="qexp" id="eg37_2"><span class="ec">정답: O</span> — flooding은 현재분사로 the corporations를 수식. 어법상 올바름.</div></div>
+
+  <div style="font-size:13px;font-weight:600;color:var(--blue);margin:16px 0 8px;letter-spacing:.05em;">▶ 글의 순서</div>
+  <div class="order-q">
+    <div class="order-intro">We first need to understand the short but hidden history behind the plastics industry and how it became deeply rooted in our daily lives. Before plastic, people lived more sustainably, with far fewer waste problems than we face today.</div>
+    <div class="order-paras">
+      <div class="para-block"><div class="para-label">(A)</div><div class="para-text">Over time, people began to notice the environmental impact, and the early seeds of today's environmental movement were planted. However, the plastics industry was quick to respond to these concerns.</div></div>
+      <div class="para-block"><div class="para-label">(B)</div><div class="para-text">After the invention of plastic, its rapid adoption during World War II, and its explosion into consumer goods, plastic was everywhere. The growing industry came to represent the convenience and prosperity of the American dream.</div></div>
+      <div class="para-block"><div class="para-label">(C)</div><div class="para-text">They started campaigns that presented recycling as the solution to all our problems. They pushed the idea that pollution was the fault of consumers, not the corporations flooding the market with plastic.</div></div>
+    </div>
+    <div style="font-size:13px;color:var(--ink2);margin-bottom:10px;">올바른 순서를 선택하세요:</div>
+    <div class="order-opts">
+      <button class="oopt" data-oq="o37_1" data-v="1" onclick="op(this)">(B)-(A)-(C)</button>
+      <button class="oopt" data-oq="o37_1" data-v="2" onclick="op(this)">(A)-(B)-(C)</button>
+      <button class="oopt" data-oq="o37_1" data-v="3" onclick="op(this)">(C)-(B)-(A)</button>
+      <button class="oopt" data-oq="o37_1" data-v="4" onclick="op(this)">(B)-(C)-(A)</button>
+      <button class="oopt" data-oq="o37_1" data-v="5" onclick="op(this)">(A)-(C)-(B)</button>
+    </div>
+  </div>
+
+  <div style="font-size:13px;font-weight:600;color:var(--blue);margin:16px 0 8px;letter-spacing:.05em;">▶ 빈칸 추론</div>
+  <div class="blank-q">
+    <div class="blank-passage">The plastics industry quickly responded to environmental concerns by launching campaigns that presented recycling as the solution, thereby shifting the <span class="blank-slot">&nbsp;&nbsp;?&nbsp;&nbsp;</span> for pollution from corporations to individual consumers.</div>
+    <div class="blank-choices">
+      <div class="bchoice" data-bq="b37_1" data-v="1" onclick="bp(this)"><span class="bnum">①</span> cost</div>
+      <div class="bchoice" data-bq="b37_1" data-v="2" onclick="bp(this)"><span class="bnum">②</span> responsibility</div>
+      <div class="bchoice" data-bq="b37_1" data-v="3" onclick="bp(this)"><span class="bnum">③</span> awareness</div>
+      <div class="bchoice" data-bq="b37_1" data-v="4" onclick="bp(this)"><span class="bnum">④</span> profit</div>
+      <div class="bchoice" data-bq="b37_1" data-v="5" onclick="bp(this)"><span class="bnum">⑤</span> motivation</div>
+    </div>
+  </div>
+  <div class="ac" id="ac-37"></div>
+</div>
+
+<!-- ══════════ 38번 ══════════ -->
+<div class="section" id="tab-s38">
+  <div class="sec-score-bar">
+    <div><div class="title">38번 — 쿤의 패러다임: 과학적 진보는 수평적 관점 이동</div><div class="sub">패러다임 내에서만 측정이 의미를 가지며 진보는 더 정확한 것이 아닌 다른 시각으로의 전환</div></div>
+    <div class="brow"><button class="btn btn-outline" onclick="scoreSection('38')">채점</button><button class="btn btn-gold" onclick="sw('s39')">다음 →</button></div>
+  </div>
+
+  <div style="font-size:13px;font-weight:600;color:var(--blue);margin-bottom:8px;letter-spacing:.05em;">▶ 어휘 선택</div>
+  <div class="passage">
+    As Kuhn <span class="vs" id="qv38_1"><sup>1)</sup><span class="opts"><button class="vbtn" data-q="v38_1" data-v="suggested" onclick="vp(this)">suggested</button><span class="vdiv">/</span><button class="vbtn" data-q="v38_1" data-v="refused" onclick="vp(this)">refused</button></span></span>, our propositions about the world are embedded within paradigms, <span class="vs" id="qv38_2"><sup>2)</sup><span class="opts"><button class="vbtn" data-q="v38_2" data-v="approximately" onclick="vp(this)">approximately</button><span class="vdiv">/</span><button class="vbtn" data-q="v38_2" data-v="exactly" onclick="vp(this)">exactly</button></span></span> a network of interrelated <span class="vs" id="qv38_3"><sup>3)</sup><span class="opts"><button class="vbtn" data-q="v38_3" data-v="commitments" onclick="vp(this)">commitments</button><span class="vdiv">/</span><button class="vbtn" data-q="v38_3" data-v="betrayals" onclick="vp(this)">betrayals</button></span></span> to a particular theory. Even the most exacting measurements are only <span class="vs" id="qv38_4"><sup>4)</sup><span class="opts"><button class="vbtn" data-q="v38_4" data-v="meaningful" onclick="vp(this)">meaningful</button><span class="vdiv">/</span><button class="vbtn" data-q="v38_4" data-v="senseless" onclick="vp(this)">senseless</button></span></span> from within that paradigm. What we call major progress in science is not a movement from a less to a more <span class="vs" id="qv38_5"><sup>5)</sup><span class="opts"><button class="vbtn" data-q="v38_5" data-v="precise" onclick="vp(this)">precise</button><span class="vdiv">/</span><button class="vbtn" data-q="v38_5" data-v="inaccurate" onclick="vp(this)">inaccurate</button></span></span> paradigm. Rather, it is a <span class="vs" id="qv38_6"><sup>6)</sup><span class="opts"><button class="vbtn" data-q="v38_6" data-v="horizontal" onclick="vp(this)">horizontal</button><span class="vdiv">/</span><button class="vbtn" data-q="v38_6" data-v="vertical" onclick="vp(this)">vertical</button></span></span> shift from one 'way of seeing the world' to another.
+  </div>
+
+  <div style="font-size:13px;font-weight:600;color:var(--blue);margin:16px 0 8px;letter-spacing:.05em;">▶ 어법 선택</div>
+  <div class="gq"><div class="qlabel">38번 어법 ①</div><div class="qtext">…our propositions about the world are <em>embedded</em> within paradigms, approximately a network of interrelated commitments.</div><div class="gopts"><button class="gopt" data-gq="g38_1" data-v="O" onclick="gp(this)">O — 올바르다</button><button class="gopt" data-gq="g38_1" data-v="X" onclick="gp(this)">X — 틀리다</button></div><div class="qexp" id="eg38_1"><span class="ec">정답: O</span> — are embedded = 현재완료 수동이 아닌 현재 수동태. be + p.p. 어법상 올바름.</div></div>
+  <div class="gq"><div class="qlabel">38번 어법 ②</div><div class="qtext">A look into a microscope tells you nothing <em>unless</em> you are already informed about the trait of the instrument.</div><div class="gopts"><button class="gopt" data-gq="g38_2" data-v="O" onclick="gp(this)">O — 올바르다</button><button class="gopt" data-gq="g38_2" data-v="X" onclick="gp(this)">X — 틀리다</button></div><div class="qexp" id="eg38_2"><span class="ec">정답: O</span> — unless = if ~ not, 조건 부사절. 어법상 올바름.</div></div>
+
+  <div style="font-size:13px;font-weight:600;color:var(--blue);margin:16px 0 8px;letter-spacing:.05em;">▶ 빈칸 추론</div>
+  <div class="blank-q">
+    <div class="blank-passage">According to Kuhn, what we call major progress in science is not a movement from a less to a more precise paradigm. Rather, it is a <span class="blank-slot">&nbsp;&nbsp;?&nbsp;&nbsp;</span> shift from one 'way of seeing the world' to another. For Kuhn, 'the scientist with a new paradigm sees differently from the way he had seen before.'</div>
+    <div class="blank-choices">
+      <div class="bchoice" data-bq="b38_1" data-v="1" onclick="bp(this)"><span class="bnum">①</span> vertical</div>
+      <div class="bchoice" data-bq="b38_1" data-v="2" onclick="bp(this)"><span class="bnum">②</span> gradual</div>
+      <div class="bchoice" data-bq="b38_1" data-v="3" onclick="bp(this)"><span class="bnum">③</span> horizontal</div>
+      <div class="bchoice" data-bq="b38_1" data-v="4" onclick="bp(this)"><span class="bnum">④</span> backward</div>
+      <div class="bchoice" data-bq="b38_1" data-v="5" onclick="bp(this)"><span class="bnum">⑤</span> predictable</div>
+    </div>
+  </div>
+
+  <div style="font-size:13px;font-weight:600;color:var(--blue);margin:16px 0 8px;letter-spacing:.05em;">▶ 문장 삽입</div>
+  <div class="insert-q">
+    <div class="insert-sentence">Even the most exacting measurements are only meaningful from within that paradigm.</div>
+    <div class="insert-passage">
+      As Kuhn suggested, our propositions about the world are embedded within paradigms — a network of interrelated commitments to a particular theory. <span class="ins-marker" data-iq="i38_1" data-v="1" onclick="ip(this)">1</span> Thus, when scientists undertake research, they do so from within a particular paradigm. <span class="ins-marker" data-iq="i38_1" data-v="2" onclick="ip(this)">2</span> For example, a look into a microscope tells you nothing unless you are already informed about the trait of the instrument and what you are supposed to be looking at. <span class="ins-marker" data-iq="i38_1" data-v="3" onclick="ip(this)">3</span> Thus, what we call major progress in science is not a movement from a less to a more precise paradigm. <span class="ins-marker" data-iq="i38_1" data-v="4" onclick="ip(this)">4</span> Rather, it is a horizontal shift from one 'way of seeing the world' to another. <span class="ins-marker" data-iq="i38_1" data-v="5" onclick="ip(this)">5</span>
+    </div>
+  </div>
+  <div class="ac" id="ac-38"></div>
+</div>
+
+<!-- ══════════ 39번 ══════════ -->
+<div class="section" id="tab-s39">
+  <div class="sec-score-bar">
+    <div><div class="title">39번 — 온실의 겨울 수확: 서리와 생동감의 대비</div><div class="sub">새벽의 얼어붙은 작물이 몇 시간 후 햇빛에 생기 넘치는 모습으로 변한다</div></div>
+    <div class="brow"><button class="btn btn-outline" onclick="scoreSection('39')">채점</button><button class="btn btn-gold" onclick="sw('s40')">다음 →</button></div>
+  </div>
+
+  <div style="font-size:13px;font-weight:600;color:var(--blue);margin-bottom:8px;letter-spacing:.05em;">▶ 어휘 선택</div>
+  <div class="passage">
+    Making two visits to one of our cold greenhouses <span class="vs" id="qv39_1"><sup>1)</sup><span class="opts"><button class="vbtn" data-q="v39_1" data-v="supplies" onclick="vp(this)">supplies</button><span class="vdiv">/</span><button class="vbtn" data-q="v39_1" data-v="deprives" onclick="vp(this)">deprives</button></span></span> a striking introduction to the winter harvest. <span class="vs" id="qv39_2"><sup>2)</sup><span class="opts"><button class="vbtn" data-q="v39_2" data-v="Lifting" onclick="vp(this)">Lifting</button><span class="vdiv">/</span><button class="vbtn" data-q="v39_2" data-v="Lowering" onclick="vp(this)">Lowering</button></span></span> the inner covers <span class="vs" id="qv39_3"><sup>3)</sup><span class="opts"><button class="vbtn" data-q="v39_3" data-v="shows" onclick="vp(this)">shows</button><span class="vdiv">/</span><button class="vbtn" data-q="v39_3" data-v="conceals" onclick="vp(this)">conceals</button></span></span> a sight of hard, frost-coated leaves bleak enough to <span class="vs" id="qv39_4"><sup>4)</sup><span class="opts"><button class="vbtn" data-q="v39_4" data-v="persuade" onclick="vp(this)">persuade</button><span class="vdiv">/</span><button class="vbtn" data-q="v39_4" data-v="deter" onclick="vp(this)">deter</button></span></span> anyone that this idea is <span class="vs" id="qv39_5"><sup>5)</sup><span class="opts"><button class="vbtn" data-q="v39_5" data-v="silly" onclick="vp(this)">silly</button><span class="vdiv">/</span><button class="vbtn" data-q="v39_5" data-v="wise" onclick="vp(this)">wise</button></span></span>. Yet a few hours later, the second visit presents a <span class="vs" id="qv39_6"><sup>6)</sup><span class="opts"><button class="vbtn" data-q="v39_6" data-v="marvelous" onclick="vp(this)">marvelous</button><span class="vdiv">/</span><button class="vbtn" data-q="v39_6" data-v="common" onclick="vp(this)">common</button></span></span> contrast. Under the inner covers are rows of <span class="vs" id="qv39_7"><sup>7)</sup><span class="opts"><button class="vbtn" data-q="v39_7" data-v="energetic" onclick="vp(this)">energetic</button><span class="vdiv">/</span><button class="vbtn" data-q="v39_7" data-v="weak" onclick="vp(this)">weak</button></span></span>, healthy leaves that <span class="vs" id="qv39_8"><sup>8)</sup><span class="opts"><button class="vbtn" data-q="v39_8" data-v="extend" onclick="vp(this)">extend</button><span class="vdiv">/</span><button class="vbtn" data-q="v39_8" data-v="shrink" onclick="vp(this)">shrink</button></span></span> the length of the greenhouse.
+  </div>
+
+  <div style="font-size:13px;font-weight:600;color:var(--blue);margin:16px 0 8px;letter-spacing:.05em;">▶ 어법 선택</div>
+  <div class="gq"><div class="qlabel">39번 어법 ①</div><div class="qtext">Making two visits to one of our cold greenhouses — one at dawn after a below-zero night, and the other a few hours later — <em>supplies</em> a striking introduction to the winter harvest.</div><div class="gopts"><button class="gopt" data-gq="g39_1" data-v="O" onclick="gp(this)">O — 올바르다</button><button class="gopt" data-gq="g39_1" data-v="X" onclick="gp(this)">X — 틀리다</button></div><div class="qexp" id="eg39_1"><span class="ec">정답: O</span> — 동명사 주어 Making이 단수 취급되어 supplies. 어법상 올바름.</div></div>
+  <div class="gq"><div class="qlabel">39번 어법 ②</div><div class="qtext">Under the inner covers are closely spaced rows of energetic, healthy leaves <em>that extend</em> the length of the greenhouse.</div><div class="gopts"><button class="gopt" data-gq="g39_2" data-v="O" onclick="gp(this)">O — 올바르다</button><button class="gopt" data-gq="g39_2" data-v="X" onclick="gp(this)">X — 틀리다</button></div><div class="qexp" id="eg39_2"><span class="ec">정답: O</span> — that은 주격관계대명사, rows를 선행사로 취해 extend. 어법상 올바름.</div></div>
+
+  <div style="font-size:13px;font-weight:600;color:var(--blue);margin:16px 0 8px;letter-spacing:.05em;">▶ 글의 순서</div>
+  <div class="order-q">
+    <div class="order-intro">Making two visits to one of our cold greenhouses — one at dawn after a below-zero night, and the other a few hours later — supplies a striking introduction to the winter harvest.</div>
+    <div class="order-paras">
+      <div class="para-block"><div class="para-label">(A)</div><div class="para-text">Yet a few hours later, after the sun has warmed the greenhouses above freezing, the second visit presents a marvelous contrast.</div></div>
+      <div class="para-block"><div class="para-label">(B)</div><div class="para-text">During the dawn visit all the crops are frozen solid. Lifting the inner covers, which is difficult because they too are frozen, shows a sight of hard, frost-coated leaves bleak enough to deter anyone that this idea is silly.</div></div>
+      <div class="para-block"><div class="para-label">(C)</div><div class="para-text">Under the inner covers are closely spaced rows of energetic, healthy leaves that extend the length of the greenhouse. The leaf colors in different shades of greens, reds, maroons, and yellows stand bright against the dark soil.</div></div>
+    </div>
+    <div style="font-size:13px;color:var(--ink2);margin-bottom:10px;">올바른 순서를 선택하세요:</div>
+    <div class="order-opts">
+      <button class="oopt" data-oq="o39_1" data-v="1" onclick="op(this)">(B)-(A)-(C)</button>
+      <button class="oopt" data-oq="o39_1" data-v="2" onclick="op(this)">(A)-(B)-(C)</button>
+      <button class="oopt" data-oq="o39_1" data-v="3" onclick="op(this)">(C)-(A)-(B)</button>
+      <button class="oopt" data-oq="o39_1" data-v="4" onclick="op(this)">(B)-(C)-(A)</button>
+      <button class="oopt" data-oq="o39_1" data-v="5" onclick="op(this)">(A)-(C)-(B)</button>
+    </div>
+  </div>
+
+  <div style="font-size:13px;font-weight:600;color:var(--blue);margin:16px 0 8px;letter-spacing:.05em;">▶ 빈칸 추론</div>
+  <div class="blank-q">
+    <div class="blank-passage">At dawn, the crops in the cold greenhouse are frozen solid, looking bleak and discouraging. Yet a few hours later, after the sun warms the greenhouse, the same plants present a marvelous contrast — <span class="blank-slot">&nbsp;&nbsp;?&nbsp;&nbsp;</span> rows of healthy, colorful leaves stretching the length of the greenhouse.</div>
+    <div class="blank-choices">
+      <div class="bchoice" data-bq="b39_1" data-v="1" onclick="bp(this)"><span class="bnum">①</span> withered and pale</div>
+      <div class="bchoice" data-bq="b39_1" data-v="2" onclick="bp(this)"><span class="bnum">②</span> closely spaced energetic</div>
+      <div class="bchoice" data-bq="b39_1" data-v="3" onclick="bp(this)"><span class="bnum">③</span> frozen and still</div>
+      <div class="bchoice" data-bq="b39_1" data-v="4" onclick="bp(this)"><span class="bnum">④</span> sparse and scattered</div>
+      <div class="bchoice" data-bq="b39_1" data-v="5" onclick="bp(this)"><span class="bnum">⑤</span> dark and hidden</div>
+    </div>
+  </div>
+  <div class="ac" id="ac-39"></div>
+</div>
+
+<!-- ══════════ 40번 ══════════ -->
+<div class="section" id="tab-s40">
+  <div class="sec-score-bar">
+    <div><div class="title">40번 — 아이의 독립심을 위한 구조적 변화 필요</div><div class="sub">아이가 혼자 돌아다닐 수 있는 실제 물리적 환경과 문화적 변화가 필요하다</div></div>
+    <div class="brow"><button class="btn btn-outline" onclick="scoreSection('40')">채점</button><button class="btn btn-gold" onclick="sw('s4142')">다음 →</button></div>
+  </div>
+
+  <div style="font-size:13px;font-weight:600;color:var(--blue);margin-bottom:8px;letter-spacing:.05em;">▶ 어휘 선택</div>
+  <div class="passage">
+    Parenting <span class="vs" id="qv40_1"><sup>1)</sup><span class="opts"><button class="vbtn" data-q="v40_1" data-v="specialists" onclick="vp(this)">specialists</button><span class="vdiv">/</span><button class="vbtn" data-q="v40_1" data-v="novices" onclick="vp(this)">novices</button></span></span> say children need to learn independence and <span class="vs" id="qv40_2"><sup>2)</sup><span class="opts"><button class="vbtn" data-q="v40_2" data-v="resilience" onclick="vp(this)">resilience</button><span class="vdiv">/</span><button class="vbtn" data-q="v40_2" data-v="fragility" onclick="vp(this)">fragility</button></span></span>. But cities and suburbs don't offer safe walk routes to school. All of those "musts" take more of the parents' time or money to <span class="vs" id="qv40_3"><sup>3)</sup><span class="opts"><button class="vbtn" data-q="v40_3" data-v="guide" onclick="vp(this)">guide</button><span class="vdiv">/</span><button class="vbtn" data-q="v40_3" data-v="ignore" onclick="vp(this)">ignore</button></span></span>. Underparenting requires <span class="vs" id="qv40_4"><sup>4)</sup><span class="opts"><button class="vbtn" data-q="v40_4" data-v="systemic" onclick="vp(this)">systemic</button><span class="vdiv">/</span><button class="vbtn" data-q="v40_4" data-v="cosmetic" onclick="vp(this)">cosmetic</button></span></span> change. She's talking about <span class="vs" id="qv40_5"><sup>5)</sup><span class="opts"><button class="vbtn" data-q="v40_5" data-v="real" onclick="vp(this)">real</button><span class="vdiv">/</span><button class="vbtn" data-q="v40_5" data-v="imaginary" onclick="vp(this)">imaginary</button></span></span> physical structures, and creating safe environments where <span class="vs" id="qv40_6"><sup>6)</sup><span class="opts"><button class="vbtn" data-q="v40_6" data-v="gently" onclick="vp(this)">gently</button><span class="vdiv">/</span><button class="vbtn" data-q="v40_6" data-v="heavily" onclick="vp(this)">heavily</button></span></span> supervised kids can move around freely.
+  </div>
+
+  <div style="font-size:13px;font-weight:600;color:var(--blue);margin:16px 0 8px;letter-spacing:.05em;">▶ 어법 선택</div>
+  <div class="gq"><div class="qlabel">40번 어법 ①</div><div class="qtext">All of those "musts" take more of the parents' time or money to guide, because the child <em>can't do it on their own</em>.</div><div class="gopts"><button class="gopt" data-gq="g40_1" data-v="O" onclick="gp(this)">O — 올바르다</button><button class="gopt" data-gq="g40_1" data-v="X" onclick="gp(this)">X — 틀리다</button></div><div class="qexp" id="eg40_1"><span class="ec">정답: O</span> — on one's own = 혼자 힘으로. 어법상 올바름.</div></div>
+  <div class="gq"><div class="qlabel">40번 어법 ②</div><div class="qtext">We need to "build back our tolerance for children in public spaces," she writes, "and create safe environments <em>where lightly supervised kids</em> can move around freely."</div><div class="gopts"><button class="gopt" data-gq="g40_2" data-v="O" onclick="gp(this)">O — 올바르다</button><button class="gopt" data-gq="g40_2" data-v="X" onclick="gp(this)">X — 틀리다</button></div><div class="qexp" id="eg40_2"><span class="ec">정답: O</span> — where는 관계부사로 선행사 safe environments를 수식. lightly supervised = 가볍게 감독받는. 어법상 올바름.</div></div>
+
+  <div style="font-size:13px;font-weight:600;color:var(--blue);margin:16px 0 8px;letter-spacing:.05em;">▶ 빈칸 추론</div>
+  <div class="blank-q">
+    <div class="blank-passage">Parenting experts say children need independence and resilience. But cities don't offer the infrastructure for children to roam freely. As Darby Saxbe writes, "underparenting requires systemic change" — not just economic policy, but <span class="blank-slot">&nbsp;&nbsp;?&nbsp;&nbsp;</span> structures and cultural shifts that allow lightly supervised children to move around freely.</div>
+    <div class="blank-choices">
+      <div class="bchoice" data-bq="b40_1" data-v="1" onclick="bp(this)"><span class="bnum">①</span> imaginary social</div>
+      <div class="bchoice" data-bq="b40_1" data-v="2" onclick="bp(this)"><span class="bnum">②</span> real physical</div>
+      <div class="bchoice" data-bq="b40_1" data-v="3" onclick="bp(this)"><span class="bnum">③</span> temporary educational</div>
+      <div class="bchoice" data-bq="b40_1" data-v="4" onclick="bp(this)"><span class="bnum">④</span> digital virtual</div>
+      <div class="bchoice" data-bq="b40_1" data-v="5" onclick="bp(this)"><span class="bnum">⑤</span> private household</div>
+    </div>
+  </div>
+
+  <div style="font-size:13px;font-weight:600;color:var(--blue);margin:16px 0 8px;letter-spacing:.05em;">▶ 요약문 빈칸 (a)(b)</div>
+  <div class="summary-q">
+    <div class="summary-text">Despite experts emphasizing children's need for <span class="sumslot">&nbsp;(a)&nbsp;</span>, current urban environments make it difficult for children to move freely, so addressing this requires not just policy changes but real <span class="sumslot">&nbsp;(b)&nbsp;</span> transformations.</div>
+    <div style="font-size:13px;font-weight:600;color:var(--ink2);margin-bottom:6px;">(a) 선택:</div>
+    <div class="sum-choices" style="margin-bottom:14px;">
+      <div class="schoice" data-sq="sa40_1" data-v="1" onclick="sp(this)"><span class="sn">①</span> independence</div>
+      <div class="schoice" data-sq="sa40_1" data-v="2" onclick="sp(this)"><span class="sn">②</span> discipline</div>
+      <div class="schoice" data-sq="sa40_1" data-v="3" onclick="sp(this)"><span class="sn">③</span> creativity</div>
+      <div class="schoice" data-sq="sa40_1" data-v="4" onclick="sp(this)"><span class="sn">④</span> obedience</div>
+      <div class="schoice" data-sq="sa40_1" data-v="5" onclick="sp(this)"><span class="sn">⑤</span> academic ability</div>
+    </div>
+    <div style="font-size:13px;font-weight:600;color:var(--ink2);margin-bottom:6px;">(b) 선택:</div>
+    <div class="sum-choices">
+      <div class="schoice" data-sq="sb40_1" data-v="1" onclick="sp(this)"><span class="sn">①</span> political</div>
+      <div class="schoice" data-sq="sb40_1" data-v="2" onclick="sp(this)"><span class="sn">③</span> economic</div>
+      <div class="schoice" data-sq="sb40_1" data-v="3" onclick="sp(this)"><span class="sn">③</span> structural</div>
+      <div class="schoice" data-sq="sb40_1" data-v="4" onclick="sp(this)"><span class="sn">④</span> cultural</div>
+      <div class="schoice" data-sq="sb40_1" data-v="5" onclick="sp(this)"><span class="sn">⑤</span> technological</div>
+    </div>
+  </div>
+  <div class="ac" id="ac-40"></div>
+</div>
+
+<!-- ══════════ 41~42번 ══════════ -->
+<div class="section" id="tab-s4142">
+  <div class="sec-score-bar">
+    <div><div class="title">41~42번 — 인내는 수동이 아닌 권력의 한 형태</div><div class="sub">빠른 세상에서 서두르지 않는 능력이 오히려 세상에 대한 주도권을 갖는 방식이 된다</div></div>
+    <div class="brow"><button class="btn btn-outline" onclick="scoreSection('4142')">채점</button><button class="btn btn-gold" onclick="scoreAll()">전체 채점 →</button></div>
+  </div>
+
+  <div style="font-size:13px;font-weight:600;color:var(--blue);margin-bottom:8px;letter-spacing:.05em;">▶ 어휘 선택</div>
+  <div class="passage">
+    It's <span class="vs" id="qv41_1"><sup>1)</sup><span class="opts"><button class="vbtn" data-q="v41_1" data-v="just" onclick="vp(this)">just</button><span class="vdiv">/</span><button class="vbtn" data-q="v41_1" data-v="unfair" onclick="vp(this)">unfair</button></span></span> to say that <span class="vs" id="qv41_2"><sup>2)</sup><span class="opts"><button class="vbtn" data-q="v41_2" data-v="tolerance" onclick="vp(this)">tolerance</button><span class="vdiv">/</span><button class="vbtn" data-q="v41_2" data-v="impatience" onclick="vp(this)">impatience</button></span></span> has a terrible name. It is the <span class="vs" id="qv41_3"><sup>3)</sup><span class="opts"><button class="vbtn" data-q="v41_3" data-v="virtue" onclick="vp(this)">virtue</button><span class="vdiv">/</span><button class="vbtn" data-q="v41_3" data-v="vice" onclick="vp(this)">vice</button></span></span> that has traditionally been <span class="vs" id="qv41_4"><sup>4)</sup><span class="opts"><button class="vbtn" data-q="v41_4" data-v="pressed" onclick="vp(this)">pressed</button><span class="vdiv">/</span><button class="vbtn" data-q="v41_4" data-v="discouraged" onclick="vp(this)">discouraged</button></span></span> upon housewives, while their husbands led more exciting lives. The <span class="vs" id="qv41_5"><sup>5)</sup><span class="opts"><button class="vbtn" data-q="v41_5" data-v="gifted" onclick="vp(this)">gifted</button><span class="vdiv">/</span><button class="vbtn" data-q="v41_5" data-v="incapable" onclick="vp(this)">incapable</button></span></span> but <span class="vs" id="qv41_6"><sup>6)</sup><span class="opts"><button class="vbtn" data-q="v41_6" data-v="modest" onclick="vp(this)">modest</button><span class="vdiv">/</span><button class="vbtn" data-q="v41_6" data-v="arrogant" onclick="vp(this)">arrogant</button></span></span> employee who "waits patiently" for a promotion ought to be trumpeting her <span class="vs" id="qv41_7"><sup>7)</sup><span class="opts"><button class="vbtn" data-q="v41_7" data-v="accomplishments" onclick="vp(this)">accomplishments</button><span class="vdiv">/</span><button class="vbtn" data-q="v41_7" data-v="failures" onclick="vp(this)">failures</button></span></span>. But as society <span class="vs" id="qv41_8"><sup>8)</sup><span class="opts"><button class="vbtn" data-q="v41_8" data-v="accelerates" onclick="vp(this)">accelerates</button><span class="vdiv">/</span><button class="vbtn" data-q="v41_8" data-v="decelerates" onclick="vp(this)">decelerates</button></span></span>, something shifts — patience becomes a form of power.
+  </div>
+
+  <div style="font-size:13px;font-weight:600;color:var(--blue);margin:16px 0 8px;letter-spacing:.05em;">▶ 어법 선택</div>
+  <div class="gq"><div class="qlabel">41~42번 어법 ①</div><div class="qtext">In all such cases, patience is a way of psychologically <em>adapting</em> yourself to a lack of power.</div><div class="gopts"><button class="gopt" data-gq="g41_1" data-v="O" onclick="gp(this)">O — 올바르다</button><button class="gopt" data-gq="g41_1" data-v="X" onclick="gp(this)">X — 틀리다</button></div><div class="qexp" id="eg41_1"><span class="ec">정답: O</span> — a way of + 동명사(adapting). 전치사 of 뒤에 동명사. 어법상 올바름.</div></div>
+  <div class="gq"><div class="qlabel">41~42번 어법 ②</div><div class="qtext">…the ability to resist the urge to hurry — to allow things to <em>take the time they take</em> — is a way to gain purchase on the world.</div><div class="gopts"><button class="gopt" data-gq="g41_2" data-v="O" onclick="gp(this)">O — 올바르다</button><button class="gopt" data-gq="g41_2" data-v="X" onclick="gp(this)">X — 틀리다</button></div><div class="qexp" id="eg41_2"><span class="ec">정답: O</span> — take the time they take = 그것들이 걸리는 시간을 걸리게 두다. 목적격관계대명사 생략 구조. 어법상 올바름.</div></div>
+
+  <div style="font-size:13px;font-weight:600;color:var(--blue);margin:16px 0 8px;letter-spacing:.05em;">▶ 빈칸 추론</div>
+  <div class="blank-q">
+    <div class="blank-passage">In a world geared for hurry, the ability to resist the urge to hurry — to allow things to take the time they take — is a way to gain purchase on the world, to do the work that counts, and to derive <span class="blank-slot">&nbsp;&nbsp;?&nbsp;&nbsp;</span> from the doing itself, instead of putting off all your fulfillment to the future.</div>
+    <div class="blank-choices">
+      <div class="bchoice" data-bq="b41_1" data-v="1" onclick="bp(this)"><span class="bnum">①</span> frustrations</div>
+      <div class="bchoice" data-bq="b41_1" data-v="2" onclick="bp(this)"><span class="bnum">②</span> satisfactions</div>
+      <div class="bchoice" data-bq="b41_1" data-v="3" onclick="bp(this)"><span class="bnum">③</span> confusion</div>
+      <div class="bchoice" data-bq="b41_1" data-v="4" onclick="bp(this)"><span class="bnum">④</span> regrets</div>
+      <div class="bchoice" data-bq="b41_1" data-v="5" onclick="bp(this)"><span class="bnum">⑤</span> pressure</div>
+    </div>
+  </div>
+
+  <div style="font-size:13px;font-weight:600;color:var(--blue);margin:16px 0 8px;letter-spacing:.05em;">▶ 문장 삽입</div>
+  <div class="insert-q">
+    <div class="insert-sentence">In more and more contexts, patience becomes a form of power.</div>
+    <div class="insert-passage">
+      It's just to say that tolerance (patience) has a terrible name. It is disturbingly submissive. <span class="ins-marker" data-iq="i41_1" data-v="1" onclick="ip(this)">1</span> It is the virtue that has traditionally been pressed upon housewives, or on racial minorities, told to wait just a few more decades for their full civil rights. <span class="ins-marker" data-iq="i41_1" data-v="2" onclick="ip(this)">2</span> In all such cases, patience is a way of psychologically adapting yourself to a lack of power. <span class="ins-marker" data-iq="i41_1" data-v="3" onclick="ip(this)">3</span> But as society accelerates, something shifts. <span class="ins-marker" data-iq="i41_1" data-v="4" onclick="ip(this)">4</span> In a world geared for hurry, the ability to resist the urge to hurry is a way to gain purchase on the world. <span class="ins-marker" data-iq="i41_1" data-v="5" onclick="ip(this)">5</span>
+    </div>
+  </div>
+  <div class="ac" id="ac-4142"></div>
+</div>
+
+<!-- ══════════ RESULT ══════════ -->
+<div class="section" id="tab-res">
+  <div class="result-hero">
+    <div class="score-big" id="r-big">—<span>점</span></div>
+    <div class="score-msg" id="r-msg">채점 전입니다.</div>
+  </div>
+  <div class="score-panel">
+    <h3>채점 결과 상세</h3>
+    <div class="pbar"><div class="pfill" id="r-pfill" style="width:0%"></div></div>
+    <div class="score-grid">
+      <div class="sc tot"><div class="n" id="r-tot">0</div><div class="l">전체</div></div>
+      <div class="sc cor"><div class="n" id="r-cor">0</div><div class="l">정답</div></div>
+      <div class="sc wro"><div class="n" id="r-wro">0</div><div class="l">오답</div></div>
+      <div class="sc ski"><div class="n" id="r-ski">0</div><div class="l">미답</div></div>
+    </div>
+    <table class="by-tbl">
+      <tr><td>어휘 선택</td><td id="by-v">—</td></tr>
+      <tr><td>어법 선택</td><td id="by-g">—</td></tr>
+      <tr><td>글의 순서</td><td id="by-o">—</td></tr>
+      <tr><td>빈칸 추론</td><td id="by-b">—</td></tr>
+      <tr><td>요약문 빈칸</td><td id="by-s">—</td></tr>
+      <tr><td>문장 삽입</td><td id="by-i">—</td></tr>
+    </table>
+    <div id="r-grade"></div>
+  </div>
+  <div style="display:flex;gap:10px;margin-top:16px;flex-wrap:wrap;">
+    <button class="btn btn-gold" onclick="scoreAll()">다시 채점</button>
+    <button class="btn btn-outline" onclick="resetAll()">전체 초기화</button>
+  </div>
+</div>
+
+<!-- STICKY -->
+<div class="sticky">
+  <button class="btn btn-outline" onclick="sw('ov')" style="font-size:12px;padding:7px 14px;">← 개요</button>
+  <button class="btn btn-gold" onclick="scoreAll()">전체 채점하기</button>
+  <button class="btn btn-outline" onclick="resetAll()" style="font-size:12px;padding:7px 14px;">초기화</button>
+</div>
+
+<script>
+/* ── ANSWER KEYS ── */
+const VA = { // vocab answers
+  v29_1:'abstract',v29_2:'description',v29_3:'correct',v29_4:'helpful',v29_5:'exhibited',v29_6:'useful',v29_7:'bewilderment',v29_8:'consistent',
+  v30_1:'main',v30_2:'run',v30_3:'spend',v30_4:'inevitable',v30_5:'ability',v30_6:'effective',v30_7:'achieved',
+  v31_1:'generate',v31_2:'stores',v31_3:'overloaded',v31_4:'possess',v31_5:'Simplifying',v31_6:'hesitation',
+  v32_1:'closeness',v32_2:'capability',v32_3:'prejudice',v32_4:'passive',v32_5:'overrate',v32_6:'dependable',
+  v33_1:'separate',v33_2:'symbolize',v33_3:'trade',v33_4:'separate from',v33_5:'take for granted',
+  v34_1:'account of',v34_2:'detest',v34_3:'discerned',v34_4:'minimal',v34_5:'inclination',v34_6:'attentively',v34_7:'appropriate',
+  v35_1:'notion',v35_2:'childhood',v35_3:'trigger',v35_4:'power',v35_5:'craving',
+  v36_1:'Originally',v36_2:'implies',v36_3:'complicated',v36_4:'eliminates',v36_5:'reduction',v36_6:'finally',
+  v37_1:'fast',v37_2:'represent',v37_3:'prosperity',v37_4:'perceive',v37_5:'respond to',v37_6:'starting',
+  v38_1:'suggested',v38_2:'approximately',v38_3:'commitments',v38_4:'meaningful',v38_5:'precise',v38_6:'horizontal',
+  v39_1:'supplies',v39_2:'Lifting',v39_3:'shows',v39_4:'persuade',v39_5:'silly',v39_6:'marvelous',v39_7:'energetic',v39_8:'extend',
+  v40_1:'specialists',v40_2:'resilience',v40_3:'guide',v40_4:'systemic',v40_5:'real',v40_6:'gently',
+  v41_1:'just',v41_2:'tolerance',v41_3:'virtue',v41_4:'pressed',v41_5:'gifted',v41_6:'modest',v41_7:'accomplishments',v41_8:'accelerates'
+};
+const GA = { // grammar answers
+  g29_1:'O',g29_2:'O',g30_1:'O',g30_2:'O',g31_1:'O',g31_2:'O',g32_1:'O',g32_2:'O',
+  g33_1:'O',g33_2:'O',g34_1:'O',g34_2:'O',g35_1:'O',g35_2:'O',g36_1:'O',g36_2:'O',
+  g37_1:'O',g37_2:'O',g38_1:'O',g38_2:'O',g39_1:'O',g39_2:'O',g40_1:'O',g40_2:'O',
+  g41_1:'O',g41_2:'O'
+};
+const OA = {o30_1:'1',o33_1:'1',o36_1:'1',o37_1:'1',o39_1:'1'};
+const BA = {b29_1:'3',b30_1:'2',b31_1:'1',b32_1:'3',b33_1:'2',b34_1:'1',b35_1:'2',b36_1:'2',b37_1:'2',b38_1:'3',b39_1:'2',b40_1:'2',b41_1:'2'};
+const SA = {sa31_1:'1',sb31_1:'2',sa35_1:'1',sb35_1:'2',sa40_1:'1',sb40_1:'3'};
+const IA = {i29_1:'4',i32_1:'3',i34_1:'3',i38_1:'2',i41_1:'4'};
+
+let UV={},UG={},UO={},UB={},US={},UI={};
+
+/* ── TABS ── */
+const TABS=['ov','s29','s30','s31','s32','s33','s34','s35','s36','s37','s38','s39','s40','s4142','res'];
+function sw(id){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.tb').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  document.querySelectorAll('.tb')[TABS.indexOf(id)].classList.add('active');
+  updHdr();
+}
+
+/* ── PICKERS ── */
+function vp(btn){
+  const q=btn.dataset.q,v=btn.dataset.v;
+  btn.closest('.opts').querySelectorAll('.vbtn').forEach(b=>b.classList.remove('sel'));
+  btn.classList.add('sel');
+  UV[q]=v; updHdr(); updAC();
+}
+function gp(btn){
+  const q=btn.dataset.gq,v=btn.dataset.v;
+  btn.closest('.gopts').querySelectorAll('.gopt').forEach(b=>b.classList.remove('sel'));
+  btn.classList.add('sel');
+  UG[q]=v; updHdr();
+}
+function op(btn){
+  const q=btn.dataset.oq,v=btn.dataset.v;
+  btn.closest('.order-opts').querySelectorAll('.oopt').forEach(b=>b.classList.remove('sel'));
+  btn.classList.add('sel');
+  UO[q]=v; updHdr();
+}
+function bp(btn){
+  const q=btn.dataset.bq,v=btn.dataset.v;
+  btn.closest('.blank-choices').querySelectorAll('.bchoice').forEach(b=>b.classList.remove('sel'));
+  btn.classList.add('sel');
+  UB[q]=v; updHdr();
+}
+function sp(btn){
+  const q=btn.dataset.sq,v=btn.dataset.v;
+  btn.closest('.sum-choices').querySelectorAll('.schoice').forEach(b=>b.classList.remove('sel'));
+  btn.classList.add('sel');
+  US[q]=v; updHdr();
+}
+function ip(btn){
+  const q=btn.dataset.iq,v=btn.dataset.v;
+  btn.closest('.insert-passage').querySelectorAll('.ins-marker').forEach(b=>b.classList.remove('sel'));
+  btn.classList.add('sel');
+  UI[q]=v; updHdr();
+}
+
+/* ── SCORING ── */
+function applyClass(el,correct){el.classList.add(correct?'ok':'ng');}
+function revealCorrect(container,selector,ansKey,userVal){
+  container.querySelectorAll(selector).forEach(b=>{if(b.dataset.v===ansKey&&userVal!==ansKey)b.classList.add('hint');});
+}
+
+function scoreSection(sec){
+  /* vocab */
+  const vks=Object.keys(VA).filter(k=>k.startsWith('v'+sec+'_')||k.startsWith('v4'+sec.slice(-1)+'_'));
+  Object.keys(VA).filter(k=>{
+    const prefix=sec==='4142'?['v41_','v42_']:['v'+sec+'_'];
+    return prefix.some(p=>k.startsWith(p));
+  }).forEach(q=>{
+    document.querySelectorAll(`[data-q="${q}"]`).forEach(b=>{
+      b.classList.remove('ok','ng','hint');
+      if(UV[q]===b.dataset.v) applyClass(b,UV[q]===VA[q]);
+      if(UV[q]!==VA[q]&&b.dataset.v===VA[q]) b.classList.add('hint');
+    });
+  });
+  /* grammar */
+  const gpfx=sec==='4142'?'g41_':'g'+sec+'_';
+  Object.keys(GA).filter(k=>k.startsWith(gpfx)).forEach(q=>{
+    document.querySelectorAll(`[data-gq="${q}"]`).forEach(b=>{
+      b.classList.remove('ok','ng','hint');
+      if(UG[q]===b.dataset.v) applyClass(b,UG[q]===GA[q]);
+      if(UG[q]!==GA[q]&&b.dataset.v===GA[q]) b.classList.add('hint');
+    });
+    document.getElementById('eg'+q)?.classList.add('show');
+  });
+  /* order */
+  const opfx='o'+sec+'_';
+  Object.keys(OA).filter(k=>k.startsWith(opfx)).forEach(q=>{
+    document.querySelectorAll(`[data-oq="${q}"]`).forEach(b=>{
+      b.classList.remove('ok','ng','hint');
+      if(UO[q]===b.dataset.v) applyClass(b,UO[q]===OA[q]);
+      if(UO[q]!==OA[q]&&b.dataset.v===OA[q]) b.classList.add('hint');
+    });
+  });
+  /* blank */
+  const bpfx=sec==='4142'?'b41_':'b'+sec+'_';
+  Object.keys(BA).filter(k=>k.startsWith(bpfx)).forEach(q=>{
+    document.querySelectorAll(`[data-bq="${q}"]`).forEach(b=>{
+      b.classList.remove('ok','ng','hint');
+      if(UB[q]===b.dataset.v) applyClass(b,UB[q]===BA[q]);
+      if(UB[q]!==BA[q]&&b.dataset.v===BA[q]) b.classList.add('hint');
+    });
+  });
+  /* summary */
+  ['sa','sb'].forEach(pfx=>{
+    const spfx=pfx+(sec==='4142'?'41':sec)+'_';
+    Object.keys(SA).filter(k=>k.startsWith(spfx)).forEach(q=>{
+      document.querySelectorAll(`[data-sq="${q}"]`).forEach(b=>{
+        b.classList.remove('ok','ng','hint');
+        if(US[q]===b.dataset.v) applyClass(b,US[q]===SA[q]);
+        if(US[q]!==SA[q]&&b.dataset.v===SA[q]) b.classList.add('hint');
+      });
+    });
+  });
+  /* insert */
+  const ipfx=sec==='4142'?'i41_':'i'+sec+'_';
+  Object.keys(IA).filter(k=>k.startsWith(ipfx)).forEach(q=>{
+    document.querySelectorAll(`[data-iq="${q}"]`).forEach(b=>{
+      b.classList.remove('ok','ng','hint');
+      if(UI[q]===b.dataset.v) applyClass(b,UI[q]===IA[q]);
+      if(UI[q]!==IA[q]&&b.dataset.v===IA[q]) b.classList.add('hint');
+    });
+  });
+}
+
+function scoreAll(){
+  ['29','30','31','32','33','34','35','36','37','38','39','40','4142'].forEach(scoreSection);
+  /* count */
+  let vc=0,vw=0,vs=0,gc=0,gw=0,gs=0,oc=0,ow=0,os=0,bc=0,bw=0,bs=0,sc=0,sw2=0,ss=0,ic=0,iw=0,is2=0;
+  Object.keys(VA).forEach(q=>{const a=UV[q];if(!a)vs++;else if(a===VA[q])vc++;else vw++;});
+  Object.keys(GA).forEach(q=>{const a=UG[q];if(!a)gs++;else if(a===GA[q])gc++;else gw++;});
+  Object.keys(OA).forEach(q=>{const a=UO[q];if(!a)os++;else if(a===OA[q])oc++;else ow++;});
+  Object.keys(BA).forEach(q=>{const a=UB[q];if(!a)bs++;else if(a===BA[q])bc++;else bw++;});
+  Object.keys(SA).forEach(q=>{const a=US[q];if(!a)ss++;else if(a===SA[q])sc++;else sw2++;});
+  Object.keys(IA).forEach(q=>{const a=UI[q];if(!a)is2++;else if(a===IA[q])ic++;else iw++;});
+  const cor=vc+gc+oc+bc+sc+ic;
+  const wro=vw+gw+ow+bw+sw2+iw;
+  const ski=vs+gs+os+bs+ss+is2;
+  const tot=cor+wro+ski;
+  const pct=Math.round(cor/tot*100);
+  document.getElementById('r-tot').textContent=tot;
+  document.getElementById('r-cor').textContent=cor;
+  document.getElementById('r-wro').textContent=wro;
+  document.getElementById('r-ski').textContent=ski;
+  document.getElementById('r-pfill').style.width=pct+'%';
+  document.getElementById('r-big').innerHTML=pct+'<span>점</span>';
+  const msgs=[[90,'완벽에 가깝습니다! 실전도 자신 있게 🎯'],[75,'훌륭해요! 오답 노트로 마무리하세요 💪'],[60,'좋은 출발입니다. 반복 학습으로 올려봐요 📖'],[0,'기초부터 차근차근 복습해봐요 ✏️']];
+  document.getElementById('r-msg').textContent=msgs.find(([t])=>pct>=t)[1];
+  document.getElementById('by-v').textContent=vc+'/'+Object.keys(VA).length;
+  document.getElementById('by-g').textContent=gc+'/'+Object.keys(GA).length;
+  document.getElementById('by-o').textContent=oc+'/'+Object.keys(OA).length;
+  document.getElementById('by-b').textContent=bc+'/'+Object.keys(BA).length;
+  document.getElementById('by-s').textContent=sc+'/'+Object.keys(SA).length;
+  document.getElementById('by-i').textContent=ic+'/'+Object.keys(IA).length;
+  const grs=[[95,'S','#b8924a'],[85,'A','#2e7d52'],[70,'B','#2563a8'],[55,'C','#6b6b6b'],[0,'D','#c0392b']];
+  const gr=grs.find(([t])=>pct>=t);
+  document.getElementById('r-grade').innerHTML=`<div class="grade-pill" style="background:${gr[2]}22;color:${gr[2]};border:1px solid ${gr[2]}44;">등급 ${gr[1]} — ${pct}%</div>`;
+  sw('res');
+}
+
+function resetAll(){
+  UV={};UG={};UO={};UB={};US={};UI={};
+  document.querySelectorAll('.vbtn,.gopt,.oopt,.bchoice,.schoice,.ins-marker').forEach(b=>b.classList.remove('sel','ok','ng','hint'));
+  document.querySelectorAll('.qexp').forEach(e=>e.classList.remove('show'));
+  document.getElementById('r-pfill').style.width='0%';
+  document.getElementById('r-big').innerHTML='—<span>점</span>';
+  document.getElementById('r-msg').textContent='채점 전입니다.';
+  document.getElementById('r-grade').innerHTML='';
+  ['r-tot','r-cor','r-wro','r-ski'].forEach(id=>document.getElementById(id).textContent='0');
+  ['by-v','by-g','by-o','by-b','by-s','by-i'].forEach(id=>document.getElementById(id).textContent='—');
+  updHdr();updAC();sw('ov');
+}
+
+function updHdr(){
+  const tot=Object.keys(VA).length+Object.keys(GA).length+Object.keys(OA).length+Object.keys(BA).length+Object.keys(SA).length+Object.keys(IA).length;
+  const ans=Object.keys(UV).length+Object.keys(UG).length+Object.keys(UO).length+Object.keys(UB).length+Object.keys(US).length+Object.keys(UI).length;
+  document.getElementById('hd-ans').textContent=ans;
+  document.getElementById('hd-tot').textContent=tot;
+}
+function updAC(){
+  const secs=['29','30','31','32','33','34','35','36','37','38','39','40','4142'];
+  secs.forEach(sec=>{
+    const el=document.getElementById('ac-'+sec);if(!el)return;
+    const vks=Object.keys(VA).filter(k=>{
+      const pfx=sec==='4142'?['v41_']:['v'+sec+'_'];
+      return pfx.some(p=>k.startsWith(p));
+    });
+    const done=vks.filter(k=>UV[k]).length;
+    el.textContent='어휘 답변: '+done+' / '+vks.length;
+  });
+}
+updHdr();updAC();
+</script>
+</body>
+</html>
